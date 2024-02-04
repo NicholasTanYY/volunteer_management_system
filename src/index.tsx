@@ -1,9 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import StartScreen from './pages/StartScreen';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import StartScreen from './pages/StartScreen';
+import UserHomePage from './pages/userPages/UserHomePage';
+import UserProfilePage from './pages/userPages/UserProfilePage';
+import UserEventsPage from './pages/userPages/UserEventsPage';
+import UserContactUsPage from './pages/userPages/UserContactUsPage';
+import AdminHomePage from './pages/adminPages/AdminHomePage';
+import AdminEventsPage from './pages/adminPages/AdminEventsPage';
+import AdminReportsPage from './pages/adminPages/AdminReportsPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +18,16 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Router>
-      <StartScreen />
+      <Routes>
+          <Route path="/" element={<StartScreen />} />
+          <Route path="/userHome" element={<UserHomePage />} />
+          <Route path="/userProfile" element={<UserProfilePage />} />
+          <Route path="/userEvents" element={<UserEventsPage />} />
+          <Route path="/userContactUs" element={<UserContactUsPage />} />
+          <Route path="/adminHome" element={<AdminHomePage />} />
+          <Route path="/adminEvents" element={<AdminEventsPage />} />
+          <Route path="/adminReports" element={<AdminReportsPage />} />
+      </Routes>
     </Router>
   </React.StrictMode>
 );

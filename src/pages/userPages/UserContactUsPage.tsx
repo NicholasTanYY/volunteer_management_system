@@ -1,14 +1,13 @@
 import React from 'react';
 import UserNavigationbar from '../../components/UserNavigationBar';
 
-const UserHomePage: React.FC = () => {
+const UserContactUsPage: React.FC = () => {
   return (
     <div>
       <UserNavigationbar/>
-      <h1>Dashboard</h1>
-      <p>This is the main content area for the user's home page.</p>
+      <h1>Contact Us</h1>
     </div>
   );
 };
 
-export default UserHomePage;
+export default UserContactUsPage;
