@@ -1,13 +1,15 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import AdminNavigationbar from '../../components/AdminNavigationBar';
 import { Container } from 'react-bootstrap';
+import Select from 'react-select';
+import AllSkillSets from '../../utilities/AllSkillSets';
 
 interface NewEventInfo {
     activity: string;
     description: string;
     startTime: string;
     endTime: string;
-    details: string;
+    skillsRequired: any;
   }
 
 const AdminEventsPage: React.FC = () => {
@@ -17,14 +19,19 @@ const AdminEventsPage: React.FC = () => {
     description: '',
     startTime: '',
     endTime: '',
-    details: '',
+    skillsRequired: null,
   });
 
   const handleNewEventSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log(newEventInfo); // TODO: database logic here
-    setNewEventInfo({ activity: '', description: '', startTime: '', endTime: '', details: '' });
+    setNewEventInfo({ activity: '', description: '', startTime: '', endTime: '', skillsRequired: null });
   }
+
+  const handleSkillChange = (selectedOption: any) => {
+    setNewEventInfo({ ...newEventInfo, skillsRequired: selectedOption });
+  };
+
 //   const handleNewEventCancel = () => {}
   const handleNewEventChange = (event: ChangeEvent<HTMLInputElement>) => {
     setNewEventInfo({ ...newEventInfo, [event.target.name]: event.target.value });
@@ -55,8 +62,15 @@ const AdminEventsPage: React.FC = () => {
                 <input type="time" name="endTime" value={newEventInfo.endTime} onChange={handleNewEventChange} />
             </label>
             <label>
-                Details:
-                <input type="text" name="details" value={newEventInfo.details} onChange={handleNewEventChange} />
+                Preferable Skills:
+                <Select
+                  value={newEventInfo.skillsRequired}
+                  onChange={handleSkillChange}
+                  options={AllSkillSets}
+                  isMulti={true} // Allow multiple selections
+                  className="basic-multi-select"
+                  classNamePrefix="select"
+                />
             </label>
             <button type="submit">Add Event</button>
             </form>
