@@ -1,10 +1,11 @@
 import React from 'react';
-import RegisterComponent from '../../components/RegisterComponent';
+// import RegisterComponent from '../../components/RegisterComponent';
+import LoginRegisterComponent from '../../components/LoginRegisterComponent';
 
 const UserRegisterPage: React.FC = () => {
 
     return (
-        <RegisterComponent isAdmin={false} />
+        <LoginRegisterComponent isAdmin={false} isLogin={false}/>
     );
 };
 

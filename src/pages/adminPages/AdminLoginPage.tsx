@@ -1,11 +1,12 @@
 import React from 'react';
-import LoginComponent from '../../components/LoginComponent';
+// import LoginComponent from '../../components/LoginComponent';
+import LoginRegisterComponent from '../../components/LoginRegisterComponent';
 
-const UserLoginPage: React.FC = () => {
+const AdminLoginPage: React.FC = () => {
 
     return (
-        <LoginComponent isAdmin={true} />
+        <LoginRegisterComponent isAdmin={true} isLogin={true} />
     );
 };
 
-export default UserLoginPage;
+export default AdminLoginPage;

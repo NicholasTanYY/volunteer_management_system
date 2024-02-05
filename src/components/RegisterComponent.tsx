@@ -10,7 +10,10 @@ const RegisterComponent: React.FC<RegisterProps> = ({ isAdmin }) => {
     const navigate = useNavigate();
 
     const [registerInfo, setRegisterInfo] = useState({
+        firstName: '',
+        lastName: '',
         username: '',
+        phoneNumber: '',
         password: '',
         confirmPassword: '',
     });
@@ -24,7 +27,9 @@ const RegisterComponent: React.FC<RegisterProps> = ({ isAdmin }) => {
         } else {
             navigate('/userLogin');
         }
-        setRegisterInfo({ username: '', password: '', confirmPassword: '' });
+        setRegisterInfo({
+            firstName: '', lastName: '', username: '', phoneNumber: '', password: '', confirmPassword: ''
+        });
     }
 
     const handleRegisterChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -43,24 +48,36 @@ const RegisterComponent: React.FC<RegisterProps> = ({ isAdmin }) => {
 
                 <form onSubmit={handleRegisterSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <label>
+                        First Name:
+                        <input type="text" name="firstName" value={registerInfo.firstName} onChange={handleRegisterChange} />
+                    </label>
+                    <label>
+                        Last Name:
+                        <input type="text" name="lastName" value={registerInfo.lastName} onChange={handleRegisterChange} />
+                    </label>
+                    <label>
+                        Phone Number:
+                        <input type="text" name="phoneNumber" value={registerInfo.phoneNumber} onChange={handleRegisterChange} />
+                    </label>
+                    <label>
                         Username:
                         <input type="text" name="username" value={registerInfo.username} onChange={handleRegisterChange} />
                     </label>
                     <label>
                         Password:
-                        <input 
-                            type={showPassword ? "text" : "password"} 
-                            name="password" 
-                            value={registerInfo.password} 
-                            onChange={handleRegisterChange} 
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            name="password"
+                            value={registerInfo.password}
+                            onChange={handleRegisterChange}
                         />
                     </label>
                     <label>
                         Confirm Password:
-                        <input 
-                            type={showPassword ? "text" : "password"} 
-                            name="confirmPassword" 
-                            value={registerInfo.confirmPassword} 
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            name="confirmPassword"
+                            value={registerInfo.confirmPassword}
                             onChange={handleRegisterChange} />
                     </label>
                     <label>
