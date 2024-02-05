@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminNavigationbar from '../../components/AdminNavigationBar';
+import AdminNavigationbar from '../../components/AdminNavigationBarComponent';
 
 const AdminHomePage: React.FC = () => {
   return (
