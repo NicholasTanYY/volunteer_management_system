@@ -14,6 +14,7 @@ const RegisterComponent: React.FC<RegisterProps> = ({ isAdmin }) => {
         password: '',
         confirmPassword: '',
     });
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleRegisterSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -33,7 +34,10 @@ const RegisterComponent: React.FC<RegisterProps> = ({ isAdmin }) => {
     return (
         <Container>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <h1>{isAdmin ? 'Admin' : 'User'} Register</h1>
+                <h1>{isAdmin ? 'Admin' : 'Volunteer'} Sign Up</h1>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <h3>Nice to meet you!</h3>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
 
@@ -44,11 +48,29 @@ const RegisterComponent: React.FC<RegisterProps> = ({ isAdmin }) => {
                     </label>
                     <label>
                         Password:
-                        <input type="password" name="password" value={registerInfo.password} onChange={handleRegisterChange} />
+                        <input 
+                            type={showPassword ? "text" : "password"} 
+                            name="password" 
+                            value={registerInfo.password} 
+                            onChange={handleRegisterChange} 
+                        />
                     </label>
                     <label>
                         Confirm Password:
-                        <input type="password" name="confirmPassword" value={registerInfo.confirmPassword} onChange={handleRegisterChange} />
+                        <input 
+                            type={showPassword ? "text" : "password"} 
+                            name="confirmPassword" 
+                            value={registerInfo.confirmPassword} 
+                            onChange={handleRegisterChange} />
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            value={showPassword.toString()}
+                            onChange={() =>
+                                setShowPassword((prev) => !prev)
+                            }
+                        />
                     </label>
                     <button type="submit">Register</button>
                 </form>

@@ -13,6 +13,7 @@ const LoginComponent: React.FC<LoginProps> = ({ isAdmin }) => {
         username: '',
         password: '',
     });
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLoginSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -32,10 +33,12 @@ const LoginComponent: React.FC<LoginProps> = ({ isAdmin }) => {
     return (
         <Container>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <h1>{isAdmin ? 'Admin' : 'User'} Login</h1>
+                <h1>{isAdmin ? 'Admin' : 'Volunteer'} Login</h1>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <h3>Welcome Back!</h3>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-
                 <form onSubmit={handleLoginSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     <label>
                         Username:
@@ -43,7 +46,21 @@ const LoginComponent: React.FC<LoginProps> = ({ isAdmin }) => {
                     </label>
                     <label>
                         Password:
-                        <input type="password" name="password" value={loginInfo.password} onChange={handleLoginChange} />
+                        <input 
+                            type={showPassword ? "text" : "password"} 
+                            name="password" 
+                            value={loginInfo.password} 
+                            onChange={handleLoginChange} 
+                        />
+                    </label>
+                    <label>
+                        <input
+                            type="checkbox"
+                            value={showPassword.toString()}
+                            onChange={() =>
+                                setShowPassword((prev) => !prev)
+                            }
+                        />
                     </label>
                     <button type="submit">Login</button>
                 </form>
