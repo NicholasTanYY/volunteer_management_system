@@ -48,6 +48,9 @@ const LoginComponent: React.FC<LoginProps> = ({ isAdmin }) => {
                     <button type="submit">Login</button>
                 </form>
             </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <p>Don't have an account? <a href={isAdmin ? '/adminRegister' : '/userRegister'}>Sign up now</a></p>
+            </div>
         </Container>
     );
 

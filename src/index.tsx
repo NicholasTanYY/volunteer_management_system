@@ -13,6 +13,7 @@ import AdminEventsPage from './pages/adminPages/AdminEventsPage';
 import AdminReportsPage from './pages/adminPages/AdminReportsPage';
 import UserLoginPage from './pages/userPages/UserLoginPage';
 import AdminLoginPage from './pages/adminPages/AdminLoginPage';
+import UserRegisterPage from './pages/userPages/UserRegisterPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -23,12 +24,13 @@ root.render(
       <Routes>
           <Route path="/" element={<StartScreen />} />
           <Route path="/userLogin" element={<UserLoginPage />} />
-          {/* <Route path="/userRegister" element={<UserRegisterPage />} /> */}
+          <Route path="/userRegister" element={<UserRegisterPage />} />
           <Route path="/userHome" element={<UserHomePage />} />
           <Route path="/userProfile" element={<UserProfilePage />} />
           <Route path="/userEvents" element={<UserEventsPage />} />
           <Route path="/userContactUs" element={<UserContactUsPage />} />
           <Route path="/adminLogin" element={<AdminLoginPage />} />
+          {/* <Route path="/adminRegister" element={<AdminRegisterPage />} /> */}
           <Route path="/adminHome" element={<AdminHomePage />} />
           <Route path="/adminEvents" element={<AdminEventsPage />} />
           <Route path="/adminReports" element={<AdminReportsPage />} />
