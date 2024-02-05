@@ -8,8 +8,8 @@ const StartScreen: React.FC = () => {
   return (
     <div>
       <h1>Welcome! Please select your role:</h1>
-      <Button variant="primary" onClick={() => navigate('/userHome')}>User</Button>
-      <Button variant="primary" onClick={() => navigate('/adminHome')}>Admin</Button>
+      <Button variant="primary" onClick={() => navigate('/userLogin')}>User</Button>
+      <Button variant="primary" onClick={() => navigate('/adminLogin')}>Admin</Button>
     </div>
   );
 };
