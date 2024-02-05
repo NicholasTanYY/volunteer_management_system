@@ -1,5 +1,5 @@
 import React from 'react';
-import UserNavigationbar from '../../components/UserNavigationBar';
+import UserNavigationbar from '../../components/UserNavigationBarComponent';
 
 const UserHomePage: React.FC = () => {
   return (
