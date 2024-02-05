@@ -30,21 +30,28 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log(isLogin ? loginInfo: registerInfo); // TODO: database logic here
+
         if (isLogin) {
+            setLoginInfo({ username: '', password: '' });
             if (isAdmin) {
                 navigate('/adminHome');
             } else {
                 navigate('/userHome');
             }
-            setLoginInfo({ username: '', password: '' });
         }
         else {
+            if (registerInfo.password !== registerInfo.confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            else {
+                setRegisterInfo({ firstName: '', lastName: '', username: '', phoneNumber: '', password: '', confirmPassword: '' });
+            }
             if (isAdmin) {
                 navigate('/adminLogin');
             } else {
                 navigate('/userLogin');
             }
-            setRegisterInfo({ firstName: '', lastName: '', username: '', phoneNumber: '', password: '', confirmPassword: '' });
         }
     }
 
