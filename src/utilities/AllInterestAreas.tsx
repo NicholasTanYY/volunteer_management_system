@@ -1,0 +1,26 @@
+const AllInterestAreas = [
+    { value: 'community-service', label: 'Community Service' },
+    { value: 'education', label: 'Education' },
+    { value: 'environment', label: 'Environment' },
+    { value: 'healthcare', label: 'Healthcare' },
+    { value: 'animal-welfare', label: 'Animal Welfare' },
+    { value: 'arts-and-culture', label: 'Arts and Culture' },
+    { value: 'disaster-relief', label: 'Disaster Relief' },
+    { value: 'human-rights', label: 'Human Rights' },
+    { value: 'technology', label: 'Technology' },
+    { value: 'senior-citizens', label: 'Senior Citizens' },
+    { value: 'children-and-youth', label: 'Children and Youth' },
+    { value: 'sports-and-recreation', label: 'Sports and Recreation' },
+    { value: 'homelessness-and-housing', label: 'Homelessness and Housing' },
+    { value: 'food-security', label: 'Food Security' },
+    { value: 'legal-aid', label: 'Legal Aid' },
+    { value: 'women-empowerment', label: 'Women Empowerment' },
+    { value: 'mental-health', label: 'Mental Health' },
+    { value: 'lgbtq+-rights', label: 'LGBTQ+ Rights' },
+    { value: 'immigrant-support', label: 'Immigrant Support' },
+    { value: 'veterans', label: 'Veterans' },
+    { value: 'science-and-research', label: 'Science and Research' },
+    { value: 'public-policy', label: 'Public Policy' },
+];
+
+export default AllInterestAreas
