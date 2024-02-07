@@ -26,7 +26,7 @@ const AdminEventsPage: React.FC = () => {
 
   const handleSkillChange = (selectedOption: any) => {
     setNewEventInfo({ ...newEventInfo, skillsRequired: selectedOption });
-  };
+  }
 
   //   const handleNewEventCancel = () => {}
   const handleNewEventChange = (event: ChangeEvent<HTMLInputElement>) => {

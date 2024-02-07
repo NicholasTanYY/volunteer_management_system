@@ -12,10 +12,10 @@ const UserNavigationbar: React.FC = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">
           <Nav.Link as={Link} to="/userHome">Home</Nav.Link>
-          <Nav.Link as={Link} to="/userProfile">Profile</Nav.Link>
           <Nav.Link as={Link} to="/userEvents">Events</Nav.Link>
           <Nav.Link as={Link} to="/userContactUs">Contact Us</Nav.Link>
           <Nav.Link as={Link} to="/">Logout</Nav.Link>
+          <Nav.Link as={Link} to="/userProfile">Profile</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
