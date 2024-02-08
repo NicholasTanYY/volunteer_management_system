@@ -1,15 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap';
 
 const StartScreen: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <h1>Welcome! Please select your role:</h1>
-      <Button variant="primary" onClick={() => navigate('/userLogin')}>User</Button>
-      <Button variant="primary" onClick={() => navigate('/adminLogin')}>Admin</Button>
+    <div className="vh-100 d-flex flex-row justify-content-evenly">
+      <div className="d-flex flex-column justify-content-center">
+        <h1>Image</h1>
+      </div>
+      <div className="d-flex flex-column justify-content-center">
+        <h1>I am a...</h1>
+        <Button variant="dark" className="m-2" onClick={() => navigate('/userLogin')}>User</Button>
+        <Button variant="dark" className="m-2" onClick={() => navigate('/adminLogin')}>Admin</Button>
+      </div>
     </div>
   );
 };
