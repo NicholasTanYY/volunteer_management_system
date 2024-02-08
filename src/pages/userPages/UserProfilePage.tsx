@@ -42,42 +42,41 @@ const UserProfilePage: React.FC = () => {
     <div>
       <UserNavigationbar />
       <h2>My Profile</h2>
-      <div className="d-flex" style={{ height: '85%' }}>
-        <div className="overflow-auto" style={{ flex: 1 }}>
-          <form onSubmit={handleProfileSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <ProfilePicComponent />
-            <Container style={{ border: '1px solid black', margin: '10px', padding: '10px' }} >
-              <label>
-                Full Name (as of NRIC)
-                <input type="text" name="fullName" value={profileInfo.fullName} onChange={handleProfileChange} />
-              </label>
-              <label>
-                Date of Birth
-                <input type="text" name="dateOfBirth" value={profileInfo.dateOfBirth} onChange={handleProfileChange} />
-              </label>
-              <label>
-                Email
-                <input type="text" name="email" value={profileInfo.email} onChange={handleProfileChange} />
-              </label>
-              <label>
-                Phone Number
-                <input type="text" name="phoneNumber" value={profileInfo.phoneNumber} onChange={handleProfileChange} />
-              </label>
-              <label>
-                Availability
-                <input type="text" name="availability" value={profileInfo.availability} onChange={handleProfileChange} />
-              </label>
-              <label>
-                Occupation
-                <input type="text" name="occupation" value={profileInfo.occupation} onChange={handleProfileChange} />
-              </label>
-              <label>
-                School (if any)
-                <input type="text" name="school" value={profileInfo.school} onChange={handleProfileChange} />
-              </label>
-            </Container>
-
-            <Container style={{ border: '1px solid black', margin: '10px', padding: '10px' }} >
+      <form onSubmit={handleProfileSubmit}>
+        <div className="d-flex justify-content-evenly">
+          <ProfilePicComponent />
+          <div className="w-50 border">
+            <label>
+              Full Name (as of NRIC)
+              <input type="text" className="form-control" name="fullName" value={profileInfo.fullName} onChange={handleProfileChange} />
+            </label>
+            <label>
+              Date of Birth
+              <input type="text" className="form-control" name="dateOfBirth" value={profileInfo.dateOfBirth} onChange={handleProfileChange} />
+            </label>
+            <label>
+              Email
+              <input type="text" className="form-control" name="email" value={profileInfo.email} onChange={handleProfileChange} />
+            </label>
+            <label>
+              Phone Number
+              <input type="text" className="form-control" name="phoneNumber" value={profileInfo.phoneNumber} onChange={handleProfileChange} />
+            </label>
+            <label>
+              Availability
+              <input type="text" className="form-control" name="availability" value={profileInfo.availability} onChange={handleProfileChange} />
+            </label>
+            <label>
+              Occupation
+              <input type="text" className="form-control" name="occupation" value={profileInfo.occupation} onChange={handleProfileChange} />
+            </label>
+            <label>
+              School (if any)
+              <input type="text" className="form-control" name="school" value={profileInfo.school} onChange={handleProfileChange} />
+            </label>
+          </div>
+          <div className="w-50 d-flex flex-column justify-content-evenly">
+            <div className="border w-50 d-flex justify-content-center">
               <label>
                 Interests
                 <Select
@@ -89,9 +88,8 @@ const UserProfilePage: React.FC = () => {
                   classNamePrefix="select"
                 />
               </label>
-            </Container>
-
-            <Container style={{ border: '1px solid black', margin: '10px', padding: '10px' }} >
+            </div>
+            <div className="border w-50 d-flex justify-content-center">
               <label>
                 Skills
                 <Select
@@ -103,12 +101,11 @@ const UserProfilePage: React.FC = () => {
                   classNamePrefix="select"
                 />
               </label>
-            </Container>
-
-            <button type="submit">Save</button>
-          </form>
+            </div>
+          </div>
         </div>
-      </div>
+        <button type="submit">Save</button>
+      </form>
     </div>
   );
 };
