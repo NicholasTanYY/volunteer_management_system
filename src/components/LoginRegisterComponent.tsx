@@ -1,9 +1,8 @@
-// replaces the LoginComponent and RegisterComponent
-//with a single component that can handle both login and registration.
-
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
+import axios from 'axios';
+
 
 interface LoginRegisterProps {
     isAdmin: boolean;
@@ -27,7 +26,7 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
     });
     const [showPassword, setShowPassword] = useState(false);
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         console.log(isLogin ? loginInfo: registerInfo); // TODO: database logic here
 
@@ -47,6 +46,8 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
             if (isAdmin) {
                 navigate('/adminLogin');
             } else {
+                const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/register`);
+                console.log(`response: ${response}`);
                 navigate('/userLogin');
             }
         }
@@ -83,21 +84,22 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                                 <>
                                     <label>
                                         First Name:
-                                        <input type="text" name="firstName" value={registerInfo.firstName} onChange={handleChange} />
+                                        <input className="form-control bg-light" type="text" name="firstName" value={registerInfo.firstName} onChange={handleChange} />
                                     </label>
                                     <label>
                                         Last Name:
-                                        <input type="text" name="lastName" value={registerInfo.lastName} onChange={handleChange} />
+                                        <input className="form-control bg-light" type="text" name="lastName" value={registerInfo.lastName} onChange={handleChange} />
                                     </label>
                                     <label>
                                         Phone Number:
-                                        <input type="text" name="phoneNumber" value={registerInfo.phoneNumber} onChange={handleChange} />
+                                        <input className="form-control bg-light" type="text" name="phoneNumber" value={registerInfo.phoneNumber} onChange={handleChange} />
                                     </label>
                                 </>
                             )}
                             <label>
                                 Username:
                                 <input
+                                    className="form-control bg-light"
                                     type="text"
                                     name="username"
                                     value={isLogin ? loginInfo.username : registerInfo.username}
@@ -107,6 +109,7 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                             <label>
                                 Password:
                                 <input
+                                    className="form-control bg-light"
                                     type={showPassword ? "text" : "password"}
                                     name="password"
                                     value={isLogin ? loginInfo.password : registerInfo.password}
@@ -117,6 +120,7 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                                 <label>
                                     Confirm Password:
                                     <input
+                                        className="form-control bg-light"
                                         type={showPassword ? "text" : "password"}
                                         name="confirmPassword"
                                         value={registerInfo.confirmPassword}
