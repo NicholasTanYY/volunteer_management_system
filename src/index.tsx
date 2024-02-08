@@ -17,6 +17,7 @@ import AdminReportsPage from './pages/adminPages/AdminReportsPage';
 import UserLoginPage from './pages/userPages/UserLoginPage';
 import AdminLoginPage from './pages/adminPages/AdminLoginPage';
 import UserRegisterPage from './pages/userPages/UserRegisterPage';
+import UserBlogsPage from './pages/userPages/UserBlogsPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -31,6 +32,7 @@ root.render(
           <Route path="/userRegister" element={<UserRegisterPage />} />
           <Route path="/userHome" element={<UserHomePage />} />
           <Route path="/userProfile" element={<UserProfilePage />} />
+          <Route path="/userBlogs" element={<UserBlogsPage />} />
           <Route path="/userEvents" element={<UserEventsPage />} />
           <Route path="/userContactUs" element={<UserContactUsPage />} />
           <Route path="/adminLogin" element={<AdminLoginPage />} />
