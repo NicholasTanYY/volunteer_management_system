@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import UserNavigationbar from './UserNavigationBarComponent';
-import sampleBlogs from '../utilities/SampleBlogs.json';
+import sampleBlogs from '../utilities/samples/SampleBlogs.json';
 import BlogRendererComponent from './BlogRendererComponent';
 import { BlogInfo } from '../utilities/BlogInfoInterface';
 
@@ -17,8 +17,7 @@ const BlogComponent: React.FC = () => {
 
   return (
     <div>
-      <UserNavigationbar />
-      <h1>Blogs</h1>
+      <h2>Blogs</h2>
       {blogs.map(event => (
         <BlogRendererComponent blog={event} onClick={handleBlogClick}/>
       ))}
