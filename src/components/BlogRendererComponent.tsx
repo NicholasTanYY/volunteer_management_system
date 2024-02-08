@@ -8,8 +8,9 @@ interface BlogRendererProps {
 
 const BlogRendererComponent: React.FC<BlogRendererProps> = ({ blog: event, onClick }) => {
     return (
-        <div style={{ border: '1px solid black', margin: '10px', padding: '10px' }} onClick={() => onClick(event)} >
+        <div style={{ border: '1px solid black', margin: '10px', padding: '10px', width: '400px' }} onClick={() => onClick(event)} >
             <h2>{event.name}</h2>
+            <p>{event.datePosted} / {event.timePosted}</p>
             <p>{event.description}</p>
         </div>
     );
