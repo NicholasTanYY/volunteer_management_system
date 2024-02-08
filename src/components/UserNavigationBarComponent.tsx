@@ -13,6 +13,7 @@ const UserNavigationbar: React.FC = () => {
         <Nav className="ms-auto">
           <Nav.Link as={Link} to="/userHome">Home</Nav.Link>
           <Nav.Link as={Link} to="/userEvents">Events</Nav.Link>
+          <Nav.Link as={Link} to="/userBlogs">Blogs</Nav.Link>
           <Nav.Link as={Link} to="/userContactUs">Contact Us</Nav.Link>
           <Nav.Link as={Link} to="/">Logout</Nav.Link>
           <Nav.Link as={Link} to="/userProfile">Profile</Nav.Link>

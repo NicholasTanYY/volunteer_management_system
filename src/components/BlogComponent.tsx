@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import UserNavigationbar from './UserNavigationBarComponent';
 import sampleBlogs from '../utilities/samples/SampleBlogs.json';
 import BlogRendererComponent from './BlogRendererComponent';
 import { BlogInfo } from '../utilities/BlogInfoInterface';
+import { useNavigate } from 'react-router-dom';
 
 const BlogComponent: React.FC = () => {
   const [blogs, setBlogs] = useState<BlogInfo[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setBlogs(sampleBlogs.blogList);
@@ -13,6 +14,7 @@ const BlogComponent: React.FC = () => {
 
   const handleBlogClick = (event: BlogInfo) => {
     console.log('Clicked blog', event.id);
+    navigate(`/userBlogs/`);
   }
 
   return (

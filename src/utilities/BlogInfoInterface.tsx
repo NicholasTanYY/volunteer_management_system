@@ -3,6 +3,6 @@ export interface BlogInfo {
     name: string;
     datePosted: string;
     timePosted: string;
-    eventName: string;
+    eventName: any;
     description: string;
 }
