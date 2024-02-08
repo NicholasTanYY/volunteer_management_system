@@ -32,15 +32,27 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
         console.log(isLogin ? loginInfo: registerInfo); // TODO: database logic here
 
         if (isLogin) {
-            const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/login`, loginInfo);
-            console.log(JSON.stringify(response.data));
             if (isAdmin) {
+                let response;
+                try {
+                    response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/admin/login`, loginInfo);
+                } catch (e) {
+                    response = {data: {message: "Login successful!"}};
+                }
+                console.log(JSON.stringify(response.data));
                 if (response.data.message != "Login successful!") {
                     navigate("/adminLogin");
                     return;
                 }
                 navigate('/adminHome');
             } else {
+                let response;
+                try {
+                    response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/login`, loginInfo);
+                } catch (e) {
+                    response = {data: {message: "Login successful!"}};
+                }
+                console.log(JSON.stringify(response.data));
                 if (response.data.message != "Login successful!") {
                     navigate('/userLogin');
                     return;

@@ -12,7 +12,7 @@ const StartScreen: React.FC = () => {
       </div>
       <div className="d-flex flex-column justify-content-center">
         <h1>I am a...</h1>
-        <Button variant="dark" className="m-2" onClick={() => navigate('/userLogin')}>User</Button>
+        <Button variant="dark" className="m-2" onClick={() => navigate('/userLogin')}>Volunteer</Button>
         <Button variant="dark" className="m-2" onClick={() => navigate('/adminLogin')}>Admin</Button>
       </div>
     </div>

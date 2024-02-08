@@ -45,7 +45,7 @@ const UserProfilePage: React.FC = () => {
       <form onSubmit={handleProfileSubmit}>
         <div className="d-flex justify-content-evenly">
           <ProfilePicComponent />
-          <div className="w-50 border">
+          <div className="d-flex flex-column justify-content-center w-25 shadow rounded p-4">
             <label>
               Full Name (as of NRIC)
               <input type="text" className="form-control" name="fullName" value={profileInfo.fullName} onChange={handleProfileChange} />
@@ -75,10 +75,10 @@ const UserProfilePage: React.FC = () => {
               <input type="text" className="form-control" name="school" value={profileInfo.school} onChange={handleProfileChange} />
             </label>
           </div>
-          <div className="w-50 d-flex flex-column justify-content-evenly">
-            <div className="border w-50 d-flex justify-content-center">
-              <label>
-                Interests
+          <div className="w-25 d-flex flex-column justify-content-evenly align-items-center">
+            <div className="shadow rounded d-flex justify-content-center w-100 h-25 p-4">
+              <label className="w-100">
+                <h5>Interests</h5>
                 <Select
                   value={profileInfo.interests}
                   onChange={handleInterestsChange}
@@ -89,9 +89,9 @@ const UserProfilePage: React.FC = () => {
                 />
               </label>
             </div>
-            <div className="border w-50 d-flex justify-content-center">
-              <label>
-                Skills
+            <div className="shadow rounded d-flex justify-content-center w-100 h-25 p-4">
+              <label className="w-100">
+                <h5>Skills</h5>
                 <Select
                   value={profileInfo.skills}
                   onChange={handleSkillChange}

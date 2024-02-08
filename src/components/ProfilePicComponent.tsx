@@ -9,7 +9,7 @@ const ProfilePicComponent: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className="w-25">
             <input type="file" accept="image/*" onChange={handleImageUpload} />
             {
                 selectedImage

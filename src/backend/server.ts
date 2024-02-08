@@ -58,3 +58,28 @@ app.post('/user/clear', async (req, res) => {
     const results = await AppDataSource.getRepository(User).clear();
     res.json({message: "DB reset!"});
 })
+
+app.post('/admin/login', async (req, res) => {
+    const {username, password} = req.body;
+    const usersWithUsername = await AppDataSource.getRepository(User).findOneBy({username: username});
+    if (usersWithUsername == null) {
+        res.json({message: "Account not found :<"});
+        return;
+    }
+    if (usersWithUsername.password != password) {
+        res.json({message: "Wrong username or password :<"});
+        return;
+    }
+    if (usersWithUsername.isAdmin == false) {
+        res.json({message: "Not an admin account"});
+        return;
+    }
+    res.json({message: "Login successful!"});
+})
+
+app.post('/admin/createAccount', async (req, res) => {
+    const {firstName, lastName, phoneNumber, username, password, isAdmin} = req.body;
+    const user = await AppDataSource.getRepository(User).create({firstName, lastName, phoneNumber, username, password, isAdmin});
+    const results = await AppDataSource.getRepository(User).save(user);
+    res.json({message: "Admin added!"});
+})
