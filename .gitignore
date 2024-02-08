@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 .env
+/src/backend/clearScript.ts
 
 # testing
 /coverage

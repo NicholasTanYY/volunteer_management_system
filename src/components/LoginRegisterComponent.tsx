@@ -35,6 +35,12 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
             if (isAdmin) {
                 navigate('/adminHome');
             } else {
+                const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/login`, loginInfo);
+                console.log(JSON.stringify(response.data));
+                if (response.data.message != "Login successful!") {
+                    navigate('/userLogin');
+                    return;
+                }
                 navigate('/userHome');
             }
         }
@@ -46,8 +52,8 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
             if (isAdmin) {
                 navigate('/adminLogin');
             } else {
-                const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/register`);
-                console.log(`response: ${response}`);
+                const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/register`, registerInfo);
+                console.log(JSON.stringify(response.data));
                 navigate('/userLogin');
             }
         }

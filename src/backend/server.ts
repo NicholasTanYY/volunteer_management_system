@@ -5,6 +5,7 @@ import * as dotenv from 'dotenv';
 import { User } from './user.entity';
 dotenv.config({ path: '../../.env' })
 import cors from 'cors';
+import { clear } from "console";
 
 const app: Express = express();
 const PORT = process.env.SERVER_PORT;
@@ -17,7 +18,8 @@ const AppDataSource = new DataSource({
     "type": "postgres",
     "url": process.env.SERVER_URL,
     "entities": [User],
-    "ssl": true
+    "ssl": true,
+    "synchronize": true
 })
 AppDataSource.initialize()
     .then(() => {
@@ -27,9 +29,33 @@ AppDataSource.initialize()
         console.error("Error during Data Source initialization", err)
     })
 
-app.post('/user/register', (req, res) => {
-    const data = {
-      message: 'Hello from the server!'
-    };
-    res.json(data);
+app.post('/user/register', async (req, res) => {
+    const {firstName, lastName, phoneNumber, username, password, confirmPassword} = req.body;
+    const usersWithUsername = await AppDataSource.getRepository(User).findOneBy({username: username});
+    if (usersWithUsername != null) {
+        res.json({message: "Username already exists!"});
+        return;
+    }
+    const user = await AppDataSource.getRepository(User).create({firstName, lastName, phoneNumber, username, password});
+    const results = await AppDataSource.getRepository(User).save(user);
+    res.json({message: "Registration successful!"});
   });
+
+app.post('/user/login', async (req, res) => {
+    const {username, password} = req.body;
+    const usersWithUsername = await AppDataSource.getRepository(User).findOneBy({username: username});
+    if (usersWithUsername == null) {
+        res.json({message: "Account not found :<"});
+        return;
+    }
+    if (usersWithUsername.password != password) {
+        res.json({message: "Wrong username or password :<"});
+        return;
+    }
+    res.json({message: "Login successful!"});
+})
+
+app.post('/user/clear', async (req, res) => {
+    const results = await AppDataSource.getRepository(User).clear();
+    res.json({message: "DB reset!"});
+})

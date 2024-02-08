@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm"
+import { Entity, Column, PrimaryColumn } from "typeorm"
 
 @Entity()
 export class User {
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn({type:'varchar'})
     username: string
 
     @Column({type:'varchar'})
@@ -16,4 +16,7 @@ export class User {
 
     @Column({type:'varchar'})
     password: string
+
+    @Column({type:'boolean'})
+    isAdmin: boolean
 }
