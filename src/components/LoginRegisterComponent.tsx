@@ -19,6 +19,7 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
         username: '',
         password: '',
         confirmPassword: '',
+        isAdmin: isAdmin
     });
     const [loginInfo, setLoginInfo] = useState({
         username: '',
@@ -31,12 +32,15 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
         console.log(isLogin ? loginInfo: registerInfo); // TODO: database logic here
 
         if (isLogin) {
-            setLoginInfo({ username: '', password: '' });
+            const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/login`, loginInfo);
+            console.log(JSON.stringify(response.data));
             if (isAdmin) {
+                if (response.data.message != "Login successful!") {
+                    navigate("/adminLogin");
+                    return;
+                }
                 navigate('/adminHome');
             } else {
-                const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/login`, loginInfo);
-                console.log(JSON.stringify(response.data));
                 if (response.data.message != "Login successful!") {
                     navigate('/userLogin');
                     return;
@@ -49,12 +53,14 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                 alert('Passwords do not match');
                 return;
             }
+            const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/register`, registerInfo);
+            console.log(JSON.stringify(response.data));
             if (isAdmin) {
                 navigate('/adminLogin');
+                return;
             } else {
-                const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/register`, registerInfo);
-                console.log(JSON.stringify(response.data));
                 navigate('/userLogin');
+                return;
             }
         }
     }

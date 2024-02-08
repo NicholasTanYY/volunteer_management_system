@@ -3,9 +3,8 @@ import { DataSource } from 'typeorm'
 import  express, { Express } from 'express';
 import * as dotenv from 'dotenv';
 import { User } from './user.entity';
-dotenv.config({ path: '../../.env' })
+dotenv.config()
 import cors from 'cors';
-import { clear } from "console";
 
 const app: Express = express();
 const PORT = process.env.SERVER_PORT;
@@ -30,13 +29,13 @@ AppDataSource.initialize()
     })
 
 app.post('/user/register', async (req, res) => {
-    const {firstName, lastName, phoneNumber, username, password, confirmPassword} = req.body;
+    const {firstName, lastName, phoneNumber, username, password, confirmPassword, isAdmin} = req.body;
     const usersWithUsername = await AppDataSource.getRepository(User).findOneBy({username: username});
     if (usersWithUsername != null) {
         res.json({message: "Username already exists!"});
         return;
     }
-    const user = await AppDataSource.getRepository(User).create({firstName, lastName, phoneNumber, username, password});
+    const user = await AppDataSource.getRepository(User).create({firstName, lastName, phoneNumber, username, password, isAdmin});
     const results = await AppDataSource.getRepository(User).save(user);
     res.json({message: "Registration successful!"});
   });

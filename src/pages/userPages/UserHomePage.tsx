@@ -11,9 +11,13 @@ const UserHomePage: React.FC = () => {
       <UserNavigationbar />
       <h1>Hello Abby!</h1>
       <h3>My Events</h3>
-      <CalendarComponent />
-      <BlogComponent />
-      <NotificationComponent />
+      <div className="d-flex justify-content-evenly">
+        <div>
+          <CalendarComponent />
+          <BlogComponent />
+        </div>
+        <NotificationComponent />
+      </div>
     </div>
   );
 };
