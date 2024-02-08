@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import StartScreen from './pages/StartScreen';
 import UserHomePage from './pages/userPages/UserHomePage';
 import UserProfilePage from './pages/userPages/UserProfilePage';
@@ -20,8 +22,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Router>
-      <Routes>
+    <Provider store={store}>
+      <Router>
+        <Routes>
           <Route path="/" element={<StartScreen />} />
           <Route path="/userLogin" element={<UserLoginPage />} />
           <Route path="/userRegister" element={<UserRegisterPage />} />
@@ -34,8 +37,9 @@ root.render(
           <Route path="/adminHome" element={<AdminHomePage />} />
           <Route path="/adminEvents" element={<AdminEventsPage />} />
           <Route path="/adminReports" element={<AdminReportsPage />} />
-      </Routes>
-    </Router>
+        </Routes>
+      </Router>
+    </Provider>
   </React.StrictMode>
 );
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import UserNavigationbar from '../../components/UserNavigationBarComponent';
-import sampleEvents from '../../utilities/SampleEvents.json';
+import sampleEvents from '../../utilities/samples/SampleEvents.json';
 import EventRendererComponent from '../../components/EventRendererComponent';
 import { EventInfo } from '../../utilities/EventInfoInterface';
 

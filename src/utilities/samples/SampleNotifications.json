@@ -1,0 +1,18 @@
+{
+    "notificationsList": [
+        {
+            "id": 0,
+            "title": "Reminder of event at Big Hearts",
+            "datePosted": "4 June 2023",
+            "timePosted": "6 pm",
+            "description": "Reminder to attend the volunteering event at Big Hearts on 30 June 2023 from 6-9pm"
+        },
+        {
+            "id": 1,
+            "title": "Reminder of collect volunteer certificate",
+            "datePosted": "5 June 2023",
+            "timePosted": "1 pm",
+            "description": "Please head over to Big Heart anytime from 8 am - 5 pm on weekdays."
+        }
+    ]
+}

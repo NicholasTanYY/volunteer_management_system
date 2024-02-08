@@ -1,0 +1,20 @@
+{
+    "blogList": [
+        {
+            "id": 0,
+            "name": "Jessica",
+            "datePosted": "16 June 2023",
+            "timePosted": "6.30pm",
+            "eventName": "Donation Drive Event",
+            "description": "I had a lot of fun today!"
+        },
+        {
+            "id": 1,
+            "name": "Bob",
+            "datePosted": "2 June 2023",
+            "timePosted": "6.29pm",
+            "eventName": "Donation Drive Event",
+            "description": "Volunteering makes me happy. Can't wait for more opportunities!"
+        }
+    ]
+}
