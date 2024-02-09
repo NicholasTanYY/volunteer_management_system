@@ -34,7 +34,6 @@ const AdminCreateEventModalComponent: React.FC = () => {
       return;
     }
     navigate('/adminHome');
-    handleClose(); // Close the modal after successful event addition
   };
 
   const handleInterestChange = (selectedOption: any) => {
@@ -51,8 +50,8 @@ const AdminCreateEventModalComponent: React.FC = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        + Create Event
+      <Button variant="primary" onClick={handleShow} style={{ paddingInline: '100px'}}>
+        Create Event  +
       </Button>
 
       <Modal show={showModal} onHide={handleClose} size="lg">
@@ -67,7 +66,6 @@ const AdminCreateEventModalComponent: React.FC = () => {
             </label>
             <label>
               Description:
-              {/* <input type="text" className="form-control" name="description" value={newEventInfo.description} onChange={handleNewEventChange} /> */}
               <textarea
                 className="form-control"
                 name="description"
