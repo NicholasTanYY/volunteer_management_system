@@ -40,4 +40,7 @@ export class User {
 
     @Column({type:'simple-array', nullable: true})
     skills: string[] | null
+
+    @Column({type:'simple-array', nullable: true})
+    eventsSignedUpFor: string[] | null
 }

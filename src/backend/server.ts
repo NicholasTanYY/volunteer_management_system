@@ -94,6 +94,36 @@ app.get('/user/getEvents', async (req, res) => {
     res.json(events);
 });
 
+app.post('/user/signupEvent', async (req, res) => {
+    const {username, eventName} = req.body;
+    const user = await AppDataSource.getRepository(User).findOneBy({username: username});
+    if (user == null) {
+        // This should never happen
+        res.json({message: "Account not found :<"});
+        return;
+    }
+    const event = await AppDataSource.getRepository(Event).findOneBy({name: eventName});
+    if (event == null) {
+        // This should never happen
+        res.json({message: "Event not found :<"});
+        return;
+    }
+    if (user.eventsSignedUpFor == null) {
+        user.eventsSignedUpFor = []
+    } else if (user.eventsSignedUpFor.find(event => event == eventName) != null) {
+        res.json({message: "Already signed up for this event"});
+        return;
+    }
+    user.eventsSignedUpFor.push(event.name);
+    if (event.usersSignedupFor == null) {
+        event.usersSignedupFor = []
+    }
+    event.usersSignedupFor.push(user.username);
+    await AppDataSource.manager.save(user);
+    await AppDataSource.manager.save(event);
+    res.json({message: "Successfully signed up for event :>"});
+})
+
 
 // Admin related functions
 

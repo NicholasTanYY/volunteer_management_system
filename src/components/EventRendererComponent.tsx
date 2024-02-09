@@ -7,7 +7,6 @@ interface EventRendererProps {
 }
 
 const EventRendererComponent: React.FC<EventRendererProps> = ({ event, onClick }) => {
-    console.log(event.category)
     return (
         <div className="shadow rounded m-4 w-25 h-25" onClick={() => onClick(event)} >
             <h3>{event.name}</h3>

@@ -22,4 +22,7 @@ export class Event {
 
     @Column({type:'varchar'})
     createdBy: string
+
+    @Column({type:'simple-array', nullable: true})
+    usersSignedupFor: string[] | null
 }

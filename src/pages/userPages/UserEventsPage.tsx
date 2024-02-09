@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import UserNavigationbar from '../../components/UserNavigationBarComponent';
 import sampleEvents from '../../utilities/samples/SampleEvents.json';
-import EventRendererComponent from '../../components/EventRendererComponent';
 import { EventInfo } from '../../utilities/EventInfoInterface';
 import axios from 'axios';
+import UserEventRendererComponent from '../../components/UserEventRendererComponent';
 
 const UserEventsPage: React.FC = () => {
   const [events, setEvents] = useState<EventInfo[]>([]);
@@ -24,10 +24,6 @@ const UserEventsPage: React.FC = () => {
     getAllEvents();
   }, []);
 
-  const handleEventClick = (event: EventInfo) => {
-    console.log(`Clicked event ${event}`);
-  }
-
   return (
     !isDone
       ? <div></div>
@@ -36,7 +32,7 @@ const UserEventsPage: React.FC = () => {
       <UserNavigationbar />
       <h1>Events</h1>
       {events.map(event => (
-        <EventRendererComponent event={event} onClick={handleEventClick}/>
+        <UserEventRendererComponent event={event} />
       ))}
     </div>
   );
