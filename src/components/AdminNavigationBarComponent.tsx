@@ -14,7 +14,7 @@ const AdminNavigationbar: React.FC = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">
           <Nav.Link as={Link} to="/adminHome">Home</Nav.Link>
-          <Nav.Link as={Link} to="/adminEvents">New event</Nav.Link>
+          <Nav.Link as={Link} to="/adminEvents">Events</Nav.Link>
           <Nav.Link as={Link} to="/adminReports">Reports</Nav.Link>
         </Nav>
       </Navbar.Collapse>
