@@ -11,8 +11,12 @@ const AdminHomePage: React.FC = () => {
   const [events, setEvents] = useState<EventInfo[]>([]);
 
   const getEventsByAdmin = async () => {
-    const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/admin/getEvents`, {username});
-    setEvents(response.data);
+    try {
+      const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/admin/getEvents`, {username});
+      setEvents(response.data);
+    } catch (e) {
+      console.log("No account, temporary message");
+    }
     setIsDone(true);
   }
 
