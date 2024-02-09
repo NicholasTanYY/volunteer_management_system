@@ -23,8 +23,6 @@ const UserNavigationbar: React.FC = () => {
           <Nav.Link as={Link} to="/">Logout</Nav.Link>
         </Nav>
       </Navbar.Collapse>
-      <Nav className="ms-auto">
-      </Nav>
     </Navbar>
   );
 };
