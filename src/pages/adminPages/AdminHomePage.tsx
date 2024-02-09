@@ -37,7 +37,7 @@ const AdminHomePage: React.FC = () => {
       ? <div></div>
       :
     <div>
-      {/*
+      
       <AdminNavigationbar />
       <h1>Hello Admin!</h1>
       <h3>My Events</h3>
@@ -56,13 +56,13 @@ const AdminHomePage: React.FC = () => {
           </div>
         </div>
       </div>
-        */}
+       
 
-      <AdminNavigationbar/>
+      {/* <AdminNavigationbar/>
       <h1>Dashboard</h1>
       {events.map((event, index) => (
           <EventRendererComponent key={index} event={event} onClick={()=>{}} />
-        ))}
+        ))} */}
 
     </div>
   );
