@@ -1,8 +1,9 @@
 export interface EventInfo {
-    id: number;
-    activity: string;
-    description: string;
+    name: string;
+    date: string;
     startTime: string;
     endTime: string;
-    skillsRequired: any;
+    category: any;
+    description: string;
+    createdBy: string;
 }

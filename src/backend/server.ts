@@ -3,6 +3,7 @@ import { DataSource } from 'typeorm'
 import  express, { Express } from 'express';
 import * as dotenv from 'dotenv';
 import { User } from './user.entity';
+import { Event } from './event.entity';
 dotenv.config()
 import cors from 'cors';
 
@@ -16,7 +17,7 @@ app.listen(PORT, ()=> console.log(`Server listening to port ${PORT}`));
 const AppDataSource = new DataSource({
     "type": "postgres",
     "url": process.env.SERVER_URL,
-    "entities": [User],
+    "entities": [User, Event],
     "ssl": true,
     "synchronize": true
 })
@@ -28,6 +29,7 @@ AppDataSource.initialize()
         console.error("Error during Data Source initialization", err)
     })
 
+// User related functions
 app.post('/user/register', async (req, res) => {
     const {fullName, phoneNumber, username, password, confirmPassword, isAdmin} = req.body;
     const usersWithUsername = await AppDataSource.getRepository(User).findOneBy({username: username});
@@ -89,10 +91,6 @@ app.post('/user/data', async (req, res) => {
 
 
 // Admin related functions
-app.post('/user/clear', async (req, res) => {
-    const results = await AppDataSource.getRepository(User).clear();
-    res.json({message: "DB reset!"});
-})
 
 app.post('/admin/login', async (req, res) => {
     const {username, password} = req.body;
@@ -124,7 +122,36 @@ app.post('/admin/createAccount', async (req, res) => {
     res.json({message: "Admin added!"});
 })
 
+app.post('/admin/createEvent', async (req, res) => {
+    const {name, date, startTime, endTime, category, description, createdBy} = req.body;
+    const eventWithName = await AppDataSource.getRepository(Event).findOneBy({name: name});
+    if (eventWithName != null) {
+        res.json({message: "Event already exists!"});
+    }
+    const event = await AppDataSource.getRepository(Event).create({name, date, startTime, endTime, category, description, createdBy});
+    const results = await AppDataSource.getRepository(Event).save(event);
+    res.json({message: "Event added!"});
+})
+
+app.post('/admin/getEvents', async (req, res) => {
+    const {createdBy} = req.body;
+    const events = await AppDataSource.getRepository(Event).findBy({createdBy: createdBy});
+    res.json(events);
+})
+
+// temporary utility functions
+app.post('/user/clear', async (req, res) => {
+    const results = await AppDataSource.getRepository(User).clear();
+    res.json({message: "DB reset!"});
+})
+
+app.post('/event/clear', async (req, res) => {
+    const results = await AppDataSource.getRepository(Event).clear();
+    res.json({message: "DB reset!"});
+})
+
 app.get('/viewDB', async (req, res) => {
-    const results = await AppDataSource.getRepository(User).find()
-    res.json(results);
+    const results = await AppDataSource.getRepository(User).find();
+    const results2 = await AppDataSource.getRepository(Event).find();
+    res.json([results, results2]);
 })

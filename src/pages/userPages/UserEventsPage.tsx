@@ -12,7 +12,7 @@ const UserEventsPage: React.FC = () => {
   }, []);
 
   const handleEventClick = (event: EventInfo) => {
-    console.log('Clicked event', event.id);
+    console.log(`Clicked event ${event}`);
   }
 
   return (
