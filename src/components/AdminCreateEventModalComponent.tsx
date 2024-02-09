@@ -50,8 +50,8 @@ const AdminCreateEventModalComponent: React.FC = () => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        + Create Event
+      <Button variant="primary" onClick={handleShow} style={{ paddingInline: '100px'}}>
+        Create Event  +
       </Button>
 
       <Modal show={showModal} onHide={handleClose} size="lg">

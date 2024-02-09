@@ -50,9 +50,10 @@ const AdminEventsPage: React.FC = () => {
           <h3>All Events</h3>
           <AdminCreateEventModalComponent />
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-around', gap: '10px' }}>
+
+        <div style={{ display: 'flex', justifyContent: 'space-around', gap: '10px', marginInline: '2%' }}>
           <TextField
-            style={{ width: 'calc(33.333% - 10px)' }}
+            style={{ flex: '1' }}
             className="form-control"
             placeholder="Search events"
             value={searchTerm}
@@ -68,7 +69,7 @@ const AdminEventsPage: React.FC = () => {
           <h5>Start</h5>
           <input
             type="date"
-            style={{ width: 'calc(33.333% - 10px)' }}
+            style={{ flex: '1' }}
             className="form-control"
             value={startDate ? startDate.toISOString().substr(0, 10) : ''}
             onChange={e => setStartDate(e.target.value ? new Date(e.target.value) : null)}
@@ -76,15 +77,18 @@ const AdminEventsPage: React.FC = () => {
           <h5>End</h5>
           <input
             type="date"
-            style={{ width: 'calc(33.333% - 10px)' }}
+            style={{ flex: '1' }}
             className="form-control"
             value={endDate ? endDate.toISOString().substr(0, 10) : ''}
             onChange={e => setEndDate(e.target.value ? new Date(e.target.value) : null)}
           />
         </div>
-        <div className="d-flex justify-content-evenly">
+
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '10px', margin: '2%', paddingInline: '5%'}}>
           {filteredEvents.map((event, index) => (
-            <EventRendererComponent key={index} event={event} onClick={() => { }} />
+            <div style={{ flex: '0 0 45%' }}>
+              <EventRendererComponent key={index} event={event} onClick={() => { }} />
+            </div>
           ))}
         </div>
       </div>
