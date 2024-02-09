@@ -29,13 +29,13 @@ AppDataSource.initialize()
     })
 
 app.post('/user/register', async (req, res) => {
-    const {firstName, lastName, phoneNumber, username, password, confirmPassword, isAdmin} = req.body;
+    const {fullName, phoneNumber, username, password, confirmPassword, isAdmin} = req.body;
     const usersWithUsername = await AppDataSource.getRepository(User).findOneBy({username: username});
     if (usersWithUsername != null) {
         res.json({message: "Username already exists!"});
         return;
     }
-    const user = await AppDataSource.getRepository(User).create({firstName, lastName, phoneNumber, username, password, isAdmin});
+    const user = await AppDataSource.getRepository(User).create({fullName, phoneNumber, username, password, isAdmin});
     const results = await AppDataSource.getRepository(User).save(user);
     res.json({message: "Registration successful!"});
   });
@@ -54,6 +54,41 @@ app.post('/user/login', async (req, res) => {
     res.json({message: "Login successful!"});
 })
 
+app.post('/user/updateProfile', async (req, res) => {
+    const {username, fullName, gender, dateOfBirth, email, phoneNumber, availability, occupation, school, interests, skills} = req.body;
+    const usersWithUsername = await AppDataSource.manager.findOneBy(User, {username: username});
+    if (usersWithUsername == null) {
+        // This should never happen
+        res.json({message: "Account not found :<"});
+        return;
+    }
+    fullName !== '' ? usersWithUsername.fullName = fullName : null;
+    gender !== '' ? usersWithUsername.gender = gender : null;
+    dateOfBirth !== '' ? usersWithUsername.dateOfBirth = dateOfBirth : null;
+    email !== '' ? usersWithUsername.email = email : null;
+    phoneNumber !== '' ? usersWithUsername.phoneNumber = phoneNumber : null;
+    availability !== '' ? usersWithUsername.availability = availability : null;
+    occupation !== '' ? usersWithUsername.occupation = occupation : null;
+    school !== '' ? usersWithUsername.school = school : null;
+    interests.length !== 0 ? usersWithUsername.interests = interests : usersWithUsername.interests = null;
+    skills.length !== 0 ? usersWithUsername.skills = skills : usersWithUsername.skills = null;
+    await AppDataSource.manager.save(usersWithUsername);
+    res.json({message: "User profile updated :>"});
+});
+
+app.post('/user/data', async (req, res) => {
+    const {username} = req.body;
+    const usersWithUsername = await AppDataSource.manager.findOneBy(User, {username: username});
+    if (usersWithUsername == null) {
+        // This should never happen
+        res.json({message: "Account not found :<"});
+        return;
+    }
+    res.json(usersWithUsername);
+});
+
+
+// Admin related functions
 app.post('/user/clear', async (req, res) => {
     const results = await AppDataSource.getRepository(User).clear();
     res.json({message: "DB reset!"});
@@ -78,8 +113,18 @@ app.post('/admin/login', async (req, res) => {
 })
 
 app.post('/admin/createAccount', async (req, res) => {
-    const {firstName, lastName, phoneNumber, username, password, isAdmin} = req.body;
-    const user = await AppDataSource.getRepository(User).create({firstName, lastName, phoneNumber, username, password, isAdmin});
+    const {fullName, phoneNumber, username, password, isAdmin} = req.body;
+    const usersWithUsername = await AppDataSource.getRepository(User).findOneBy({username: username});
+    if (usersWithUsername != null) {
+        res.json({message: "Username already exists!"});
+        return;
+    }
+    const user = await AppDataSource.getRepository(User).create({fullName, phoneNumber, username, password, isAdmin});
     const results = await AppDataSource.getRepository(User).save(user);
     res.json({message: "Admin added!"});
+})
+
+app.get('/viewDB', async (req, res) => {
+    const results = await AppDataSource.getRepository(User).find()
+    res.json(results);
 })

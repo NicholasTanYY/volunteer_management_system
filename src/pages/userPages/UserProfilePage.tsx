@@ -1,26 +1,50 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import UserNavigationbar from '../../components/UserNavigationBarComponent';
-import { Container } from 'react-bootstrap';
 import Select from 'react-select';
 import { UserProfile } from '../../utilities/UserProfileInterface';
 import AllSkillSets from '../../utilities/AllSkillSets';
 import AllInterestAreas from '../../utilities/AllInterestAreas';
 import ProfilePicComponent from '../../components/ProfilePicComponent';
+import { Button } from 'react-bootstrap';
+import axios from 'axios';
+import { useAppSelector } from '../../redux/hooks';
 
 const UserProfilePage: React.FC = () => {
-
+  const username = useAppSelector(state => state.username.value);
+  const [isDone, setIsDone] = useState(false);
   const [profileInfo, setProfileInfo] = useState<UserProfile>({
+    username: username,
     fullName: '',
-    gender: null,
+    gender: '',
     dateOfBirth: '',
     email: '',
     phoneNumber: '',
     availability: '',
     occupation: '',
     school: '',
-    interests: null,
-    skills: null,
+    interests: [],
+    skills: [],
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/data`, {username});
+      let {fullName, gender, dateOfBirth, email, phoneNumber, availability, occupation, school, interests, skills} = response.data;
+      if (interests == null) {
+        interests = []
+      } else {
+        interests = interests.map((label:string) => AllInterestAreas.find(item => item.label === label));
+      }
+      if (skills == null) {
+        skills = []
+      } else {
+        skills = skills.map((label:string) => AllSkillSets.find(item => item.label === label));
+      }
+      setProfileInfo({username, fullName, gender, dateOfBirth, email, phoneNumber, availability, occupation, school, interests, skills});
+      setIsDone(true);
+    };
+    fetchData();
+  }, []);
 
   const handleInterestsChange = (selectedOption: any) => {
     setProfileInfo({ ...profileInfo, interests: selectedOption });
@@ -34,21 +58,33 @@ const UserProfilePage: React.FC = () => {
     setProfileInfo({ ...profileInfo, [event.target.name]: event.target.value });
   }
 
-  const handleProfileSubmit = (event: FormEvent<HTMLFormElement>) => {
-    console.log(profileInfo); //TODO: database logic here
+  const handleProfileSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    profileInfo.interests = profileInfo.interests.map((interest : any) => interest.label);
+    profileInfo.skills = profileInfo.skills.map((skill : any) => skill.label);
+    const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/updateProfile`, profileInfo);
+    console.log(JSON.stringify(response.data));
   }
 
   return (
-    <div>
+    !isDone
+      ? <div></div>
+      :
+      <div>
       <UserNavigationbar />
       <h2>My Profile</h2>
       <form onSubmit={handleProfileSubmit}>
         <div className="d-flex justify-content-evenly">
           <ProfilePicComponent />
           <div className="d-flex flex-column justify-content-center w-25 shadow rounded p-4">
+            <h5>Personal Particulars</h5>
             <label>
               Full Name (as of NRIC)
               <input type="text" className="form-control" name="fullName" value={profileInfo.fullName} onChange={handleProfileChange} />
+            </label>
+            <label>
+              Gender
+              <input type="text" className="form-control" name="gender" value={profileInfo.gender} onChange={handleProfileChange} />
             </label>
             <label>
               Date of Birth
@@ -104,7 +140,9 @@ const UserProfilePage: React.FC = () => {
             </div>
           </div>
         </div>
-        <button type="submit">Save</button>
+        <div className="d-flex w-100 justify-content-end mb-4">
+          <Button className="w-25 btn-dark" type="submit">Save</Button>
+        </div>
       </form>
     </div>
   );
