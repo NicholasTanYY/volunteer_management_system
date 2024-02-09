@@ -10,14 +10,13 @@ const ProfilePicComponent: React.FC = () => {
     };
 
     return (
-        <div className="w-25">
+        <div>
             <input type="file" accept="image/*" onChange={handleImageUpload} />
             {
                 selectedImage
                     ? <img src={URL.createObjectURL(selectedImage)} alt="Profile Picture" />
                     : <img src={pfpLogo} alt="Image" style={{ width: 150, height: 150 }} />
             }
-
         </div>
     );
 };

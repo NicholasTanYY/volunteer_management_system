@@ -1,46 +1,31 @@
 {
     "eventList": [
         {
-            "id": 0,
-            "activity": "",
-            "description": "",
+            "name": "",
+            "date": "",
             "startTime": "",
             "endTime": "",
-            "skillsRequired": []
+            "category": [],
+            "description": "",
+            "createdBy": ""
         },
         {
-            "id": 1,
-            "activity": "hello",
-            "description": "try hard",
+            "name": "hello",
+            "date": "2024-02-07",
             "startTime": "12:03",
             "endTime": "16:23",
-            "skillsRequired": [
-                {
-                    "value": "problem-solving",
-                    "label": "Problem Solving"
-                },
-                {
-                    "value": "event-planning",
-                    "label": "Event Planning"
-                }
-            ]
+            "category": ["Problem Solving", "Event Planning"],
+            "description": "try hard",
+            "createdBy": "a"
         },
         {
-            "id": 2,
-            "activity": "goodbye",
-            "description": "try less",
+            "name": "goodbye",
+            "date": "2024-02-07",
             "startTime": "13:03",
             "endTime": "17:23",
-            "skillsRequired": [
-                {
-                    "value": "problem-solving",
-                    "label": "Problem Solving"
-                },
-                {
-                    "value": "event-planning",
-                    "label": "Event Planning"
-                }
-            ]
+            "category": ["Problem Solving", "Event Planning"],
+            "description": "try less",
+            "createdBy": "b"
         }
     ]
 }

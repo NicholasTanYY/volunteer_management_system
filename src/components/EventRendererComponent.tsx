@@ -7,9 +7,15 @@ interface EventRendererProps {
 }
 
 const EventRendererComponent: React.FC<EventRendererProps> = ({ event, onClick }) => {
+    console.log(event.category)
     return (
-        <div style={{ border: '1px solid black', margin: '10px', padding: '10px' }} onClick={() => onClick(event)} >
-            <h2>{event.activity}</h2>
+        <div className="shadow rounded m-4 w-25 h-25" onClick={() => onClick(event)} >
+            <h3>{event.name}</h3>
+            <h5>{event.date}</h5>
+            <p>{event.startTime} - {event.endTime}</p>
+            {event.category.map((category:any, index:any) => (
+                <span className="badge bg-dark mx-2" key={index}>{category}</span>
+            ))}
             <p>{event.description}</p>
         </div>
     );

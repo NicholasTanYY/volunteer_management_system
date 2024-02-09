@@ -2,6 +2,8 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
 import axios from 'axios';
+import { storeUsername } from '../redux/reducers/usernameSlice';
+import { useAppDispatch } from '../redux/hooks';
 import login from '../images/loginImage.jpeg';
 
 interface LoginRegisterProps {
@@ -11,10 +13,10 @@ interface LoginRegisterProps {
 
 const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin }) => {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const [registerInfo, setRegisterInfo] = useState({
-        firstName: '',
-        lastName: '',
+        fullName: '',
         phoneNumber: '',
         username: '',
         password: '',
@@ -40,10 +42,11 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                     response = { data: { message: "Login successful!" } };
                 }
                 console.log(JSON.stringify(response.data));
-                if (response.data.message != "Login successful!") {
+                if (response.data.message !== "Login successful!") {
                     navigate("/adminLogin");
                     return;
                 }
+                dispatch(storeUsername(loginInfo.username));
                 navigate('/adminHome');
             } else {
                 let response;
@@ -53,10 +56,11 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                     response = { data: { message: "Login successful!" } };
                 }
                 console.log(JSON.stringify(response.data));
-                if (response.data.message != "Login successful!") {
+                if (response.data.message !== "Login successful!") {
                     navigate('/userLogin');
                     return;
                 }
+                dispatch(storeUsername(loginInfo.username));
                 navigate('/userHome');
             }
         }
@@ -107,12 +111,8 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                             {isLogin ? null : (
                                 <>
                                     <label>
-                                        First Name:
-                                        <input className="form-control bg-light" type="text" name="firstName" value={registerInfo.firstName} onChange={handleChange} />
-                                    </label>
-                                    <label>
-                                        Last Name:
-                                        <input className="form-control bg-light" type="text" name="lastName" value={registerInfo.lastName} onChange={handleChange} />
+                                        Full Name:
+                                        <input className="form-control bg-light" type="text" name="fullName" value={registerInfo.fullName} onChange={handleChange} />
                                     </label>
                                     <label>
                                         Phone Number:
