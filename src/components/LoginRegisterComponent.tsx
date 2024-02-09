@@ -2,13 +2,9 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
 import axios from 'axios';
-<<<<<<< HEAD
 import { storeUsername } from '../redux/reducers/usernameSlice';
 import { useAppDispatch } from '../redux/hooks';
-
-=======
 import login from '../images/loginImage.jpeg';
->>>>>>> eff4bbe10efb27815b1066fea16462be7d3a983e
 
 interface LoginRegisterProps {
     isAdmin: boolean;
