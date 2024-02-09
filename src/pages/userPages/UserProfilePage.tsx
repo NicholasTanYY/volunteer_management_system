@@ -8,8 +8,10 @@ import ProfilePicComponent from '../../components/ProfilePicComponent';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useAppSelector } from '../../redux/hooks';
+import { redirect } from 'react-router-dom';
 
 const UserProfilePage: React.FC = () => {
+  // const navigate = useNavigate();
   const username = useAppSelector(state => state.username.value);
   const [isDone, setIsDone] = useState(false);
   const [profileInfo, setProfileInfo] = useState<UserProfile>({
@@ -26,23 +28,25 @@ const UserProfilePage: React.FC = () => {
     skills: [],
   });
 
+  const fetchData = async () => {
+    setIsDone(false);
+    const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/data`, {username});
+    let {fullName, gender, dateOfBirth, email, phoneNumber, availability, occupation, school, interests, skills} = response.data;
+    if (interests == null) {
+      interests = []
+    } else {
+      interests = interests.map((label:string) => AllInterestAreas.find(item => item.label === label));
+    }
+    if (skills == null) {
+      skills = []
+    } else {
+      skills = skills.map((label:string) => AllSkillSets.find(item => item.label === label));
+    }
+    setProfileInfo({username, fullName, gender, dateOfBirth, email, phoneNumber, availability, occupation, school, interests, skills});
+    setIsDone(true);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/data`, {username});
-      let {fullName, gender, dateOfBirth, email, phoneNumber, availability, occupation, school, interests, skills} = response.data;
-      if (interests == null) {
-        interests = []
-      } else {
-        interests = interests.map((label:string) => AllInterestAreas.find(item => item.label === label));
-      }
-      if (skills == null) {
-        skills = []
-      } else {
-        skills = skills.map((label:string) => AllSkillSets.find(item => item.label === label));
-      }
-      setProfileInfo({username, fullName, gender, dateOfBirth, email, phoneNumber, availability, occupation, school, interests, skills});
-      setIsDone(true);
-    };
     fetchData();
   }, []);
 
@@ -64,6 +68,7 @@ const UserProfilePage: React.FC = () => {
     profileInfo.skills = profileInfo.skills.map((skill : any) => skill.label);
     const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/updateProfile`, profileInfo);
     console.log(JSON.stringify(response.data));
+    fetchData();
   }
 
   return (
