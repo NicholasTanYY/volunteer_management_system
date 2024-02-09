@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import login from '../images/loginImage.jpeg';
 
 const StartScreen: React.FC = () => {
   const navigate = useNavigate();
@@ -8,7 +9,7 @@ const StartScreen: React.FC = () => {
   return (
     <div className="vh-100 d-flex flex-row justify-content-evenly">
       <div className="d-flex flex-column justify-content-center">
-        <h1>Image</h1>
+        <img src={login} alt="Image" style={{ width: 300, height: 200 }} />
       </div>
       <div className="d-flex flex-column justify-content-center">
         <h1>I am a...</h1>
