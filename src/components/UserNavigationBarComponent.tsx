@@ -3,7 +3,6 @@ import { Navbar, Nav, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import bigAtHeartLogo from '../images/bigAtHeartLogo.jpeg';
 import pfpLogo from '../images/pfp.jpeg';
-import { Right } from 'react-bootstrap/lib/Media';
 
 const UserNavigationbar: React.FC = () => {
   return (

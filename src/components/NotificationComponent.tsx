@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState } from 'react';
-import UserNavigationbar from '../components/UserNavigationBarComponent';
 import sampleNotification from '../utilities/samples/SampleNotifications.json'
 import NotificationRendererComponent from './NotificationRendererComponent';
 import { NotificationInfo } from '../utilities/NotificationInfoInterface';

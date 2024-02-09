@@ -1,0 +1,22 @@
+{
+    "certRequestList": [
+        {
+            "id": 0,
+            "name": "Jessica",
+            "eventName": "Donation Drive Event",
+            "dateRequested": "16 June 2023",
+            "timeRequested": "6.30pm",
+            "eventAttendance": true,
+            "totalDuration": 2
+        },
+        {
+            "id": 1,
+            "name": "Bob",
+            "eventName": "Donation Drive Event",
+            "dateRequested": "11 June 2023",
+            "timeRequested": "6.10pm",
+            "eventAttendance": true,
+            "totalDuration": 4
+        }
+    ]
+}
