@@ -1,47 +1,69 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import UserNavigationbar from '../../components/UserNavigationBarComponent';
-import { Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
-import AllEvents from '../../utilities/AllEvents';
+import { useAppSelector } from '../../redux/hooks';
+import axios from 'axios';
+import { BlogInfo } from '../../utilities/BlogInfoInterface';
+import BlogRendererComponent from '../../components/BlogRendererComponent';
+import NavButton from '../../components/NavButtonComponent';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const UserBlogsPage: React.FC = () => {
-
+    const username = useAppSelector(state => state.username.value);
+    const [isDone, setIsDone] = useState(false);
+    const [isDone2, setIsDone2] = useState(false);
+    const [mappedEvents, setMappedEvents] = useState([]);
+    const [selectedEvent, setSelectedEvent] = useState<{value: string, label: string}>({ value: '', label: '' });
+    const [blogs, setBlogs] = useState<BlogInfo[]>([]);
     const [blogInfo, setBlogInfo] = useState({
-        id: 0,
         name: '',
         datePosted: '',
         timePosted: '',
-        eventName: null,
+        eventName: '',
+        createdBy: username,
         description: '',
     });
 
+    const getEvent = async () => {
+        const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/getEvent`, {username:username});
+        const response2 = await axios.get(`${process.env.REACT_APP_REQUEST_LINK}/user/getBlogs`);
+        const events = response.data;
+        setMappedEvents(events.map((event: string) => {
+            return { value: event, label: event };
+        }));
+        setBlogs(response2.data);
+        setIsDone(true);
+    }
+    useEffect(() => {
+        getEvent();
+    }, [])
+
     const navigate = useNavigate();
 
-    const handleBlogSubmit = (event: { preventDefault: () => void; }) => {
+    const submitPostReq = async () => {
+        const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/createBlogPost`, blogInfo);
+        if (response.data.message != "Blog post created!") {
+            console.log(response.data);
+            return;
+        }
+        navigate('/userHome');
+    }
+    useEffect(() => {
+        if (isDone2 == true ){
+            submitPostReq();
+        }
+    }, [isDone2])
+    const handleBlogSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-    
-        // Get the current date and time
         const now = new Date();
         const datePosted = now.toLocaleDateString();
         const timePosted = now.toLocaleTimeString();
-    
-        // Create a new blog post
-        const newBlogPost = {
-            id: blogInfo.id, // Set the id to the current length of the blog list
-            name: blogInfo.name,
-            datePosted: datePosted,
-            timePosted: timePosted,
-            eventName: blogInfo.eventName,
-            description: blogInfo.description
-        };
-    
-        console.log(newBlogPost); // TODO: database logic here
-    
-        setBlogInfo({ id: blogInfo.id + 1, name: '', datePosted: '', timePosted: '', eventName: null, description: '' });
-
-        alert('Blog submitted successfully!');
-        navigate('/userHome');
+        const updatedBlogInfo = { ...blogInfo, datePosted: datePosted, timePosted: timePosted, createdBy: username, eventName: selectedEvent?.label };
+        setBlogInfo(updatedBlogInfo);
+        setIsDone2(true);
+        // await submitPostReq();
     };
 
     const handleBlogChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -49,7 +71,7 @@ const UserBlogsPage: React.FC = () => {
     }
 
     const handleEventChange = (selectedOption: any) => {
-        setBlogInfo({ ...blogInfo, eventName: selectedOption });
+        setSelectedEvent(selectedOption);
     }
 
     const handleDescriptionChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -57,41 +79,47 @@ const UserBlogsPage: React.FC = () => {
     }
 
     return (
+        !isDone
+            ? <div></div>
+            :
         <div>
             <UserNavigationbar />
             <h1>Blogs</h1>
-            <Container>
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                    <form onSubmit={handleBlogSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                        <label>
-                            <h5>Name:</h5>
-                            <input type="text" className="form-control" name="name" value={blogInfo.name} onChange={handleBlogChange} />
-                        </label>
-                        <label>
-                            <h5>Choose Event:</h5>
-                            <Select
-                                value={blogInfo.eventName}
-                                onChange={handleEventChange}
-                                options={AllEvents}
-                                isMulti={false} // Allow multiple selections
-                                className="basic-multi-select"
-                                classNamePrefix="select"
-                            />
-                        </label>
-                        <label>
-                            <h5>Tell us about your experience!</h5>
-                            <textarea
-                                className="form-control"
-                                name="description"
-                                value={blogInfo.description}
-                                onChange={handleDescriptionChange}
-                                rows={7} // Set the initial size of the textarea
-                            />
-                        </label>
-                        <button type="submit">Submit Blog</button>
-                    </form>
+            <div className=" vh-100 d-flex justify-content-around">
+                <div className="h-75 d-flex flex-column border overflow-auto">
+                    {blogs.map((blog, idx) =>
+                        <BlogRendererComponent key={idx} blog={blog} onClick={() => {}} />
+                    )}
                 </div>
-            </Container>
+                <form onSubmit={handleBlogSubmit} className="h-75 d-flex flex-column w-25 shadow rounded p-4">
+                    <label>
+                        <h5>Name:</h5>
+                        <input type="text" className="form-control" name="name" value={blogInfo.name} onChange={handleBlogChange} />
+                    </label>
+                    <label>
+                        <h5>Choose Event:</h5>
+                        <Select
+                            value={selectedEvent}
+                            onChange={handleEventChange}
+                            options={mappedEvents}
+                            isMulti={false} // Allow multiple selections
+                            className="basic-multi-select"
+                            classNamePrefix="select"
+                        />
+                    </label>
+                    <label>
+                        <h5>Tell us about your experience!</h5>
+                        <textarea
+                            className="form-control"
+                            name="description"
+                            value={blogInfo.description}
+                            onChange={handleDescriptionChange}
+                            rows={7} // Set the initial size of the textarea
+                        />
+                    </label>
+                    <button className="btn btn-dark" type="submit">Submit Blog</button>
+                </form>
+            </div>
         </div>
     );
 };

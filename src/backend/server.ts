@@ -4,6 +4,7 @@ import  express, { Express } from 'express';
 import * as dotenv from 'dotenv';
 import { User } from './user.entity';
 import { Event } from './event.entity';
+import { Blog } from './blog.entity';
 dotenv.config()
 import cors from 'cors';
 
@@ -17,7 +18,7 @@ app.listen(PORT, ()=> console.log(`Server listening to port ${PORT}`));
 const AppDataSource = new DataSource({
     "type": "postgres",
     "url": process.env.SERVER_URL,
-    "entities": [User, Event],
+    "entities": [User, Event, Blog],
     "ssl": true,
     "synchronize": true
 })
@@ -94,6 +95,13 @@ app.get('/user/getEvents', async (req, res) => {
     res.json(events);
 });
 
+app.post('/user/getEvent', async (req, res) => {
+    const {username} = req.body;
+    const user = await AppDataSource.getRepository(User).findOneBy({username: username});
+    const eventsSignedUpFor = user?.eventsSignedUpFor;
+    res.json(eventsSignedUpFor);
+});
+
 app.post('/user/signupEvent', async (req, res) => {
     const {username, eventName} = req.body;
     const user = await AppDataSource.getRepository(User).findOneBy({username: username});
@@ -124,6 +132,19 @@ app.post('/user/signupEvent', async (req, res) => {
     res.json({message: "Successfully signed up for event :>"});
 })
 
+app.post('/user/createBlogPost', async (req, res) => {
+    const { name, datePosted, timePosted, eventName, createdBy, description } = req.body;
+    const blog = await AppDataSource.getRepository(Blog).create({ name, datePosted, timePosted, eventName, createdBy, description });
+    const results = await AppDataSource.getRepository(Blog).save(blog);
+    res.json({message: "Blog post created!"});
+})
+
+app.get('/user/getBlogs', async (req, res) => {
+    const blogs = await AppDataSource.getRepository(Blog).find();
+    res.json(blogs);
+}
+
+)
 
 // Admin related functions
 
@@ -185,8 +206,14 @@ app.post('/event/clear', async (req, res) => {
     res.json({message: "DB reset!"});
 })
 
+app.post('/blog/clear', async (req, res) => {
+    const results = await AppDataSource.getRepository(Blog).clear();
+    res.json({message: "DB reset!"});
+})
+
 app.get('/viewDB', async (req, res) => {
     const results = await AppDataSource.getRepository(User).find();
     const results2 = await AppDataSource.getRepository(Event).find();
-    res.json([results, results2]);
+    const results3 = await AppDataSource.getRepository(Blog).find();
+    res.json(results3);
 })

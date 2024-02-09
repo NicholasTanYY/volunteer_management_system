@@ -6,15 +6,24 @@ import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import NavButton from './NavButtonComponent';
+import axios from 'axios';
 
 const BlogComponent: React.FC = () => {
   const [blogs, setBlogs] = useState<BlogInfo[]>([]);
   const [currentBlogIndex, setCurrentBlogIndex] = useState(0);
+  const [isDone, setIsDone] = useState(false);
 
   const navigate = useNavigate();
+  const getBlog = async () => {
+    const response = await axios.get(`${process.env.REACT_APP_REQUEST_LINK}/user/getBlogs`);
+    console.log(response.data);
+    setBlogs(response.data);
+    setIsDone(true);
+  }
 
   useEffect(() => {
-    setBlogs(sampleBlogs.blogList);
+    getBlog();
+    // setBlogs(sampleBlogs.blogList);
   }, []);
 
   const handleNextClick = () => {
@@ -31,6 +40,9 @@ const BlogComponent: React.FC = () => {
   }
 
   return (
+    !isDone
+      ? <div></div>
+      :
     <div>
       <h2>Blogs</h2>
       {blogs.length > 0 && (
