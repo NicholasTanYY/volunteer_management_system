@@ -67,6 +67,7 @@ const IndividualComponent: React.FC = () => {
                     <label style={{ flex: '0 0 30%' }}>
                         <Select
                             value={volunteerName}
+                            placeholder="Select volunteer"
                             onChange={handleNameChange}
                             options={AllNames}
                             isMulti={false} // do not allow multiple selections
