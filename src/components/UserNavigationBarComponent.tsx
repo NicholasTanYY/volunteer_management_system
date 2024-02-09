@@ -1,12 +1,15 @@
 import React from 'react';
-import { Navbar, Nav } from 'react-bootstrap';
+import { Navbar, Nav, Dropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import bigAtHeartLogo from '../images/bigAtHeartLogo.jpeg';
+import pfpLogo from '../images/pfp.jpeg';
+import { Right } from 'react-bootstrap/lib/Media';
 
 const UserNavigationbar: React.FC = () => {
   return (
     <Navbar expand="lg" bg="dark" variant="dark">
       <Navbar.Brand as={Link} to="/userHome">
-        VOLUNASIA
+        <img src={bigAtHeartLogo} alt="Image" style={{ width: 50, height: 40 }} />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -15,10 +18,20 @@ const UserNavigationbar: React.FC = () => {
           <Nav.Link as={Link} to="/userEvents">Events</Nav.Link>
           <Nav.Link as={Link} to="/userBlogs">Blogs</Nav.Link>
           <Nav.Link as={Link} to="/userContactUs">Contact Us</Nav.Link>
-          <Nav.Link as={Link} to="/">Logout</Nav.Link>
-          <Nav.Link as={Link} to="/userProfile">Profile</Nav.Link>
         </Nav>
       </Navbar.Collapse>
+      <Nav className="ms-auto">
+        <Dropdown>
+          <Dropdown.Toggle as={Nav.Link}>
+            <img src={pfpLogo} alt="Image" style={{ width: 30, height: 30 }} />
+          </Dropdown.Toggle>
+
+            <Dropdown.Menu>
+            <Dropdown.Item as={Link} to="/userProfile">Profile</Dropdown.Item>
+            <Dropdown.Item as={Link} to="/">Logout</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Nav>
     </Navbar>
   );
 };

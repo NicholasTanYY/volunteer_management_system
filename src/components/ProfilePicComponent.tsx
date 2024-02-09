@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import pfpLogo from '../images/pfp.jpeg';
 
 const ProfilePicComponent: React.FC = () => {
     const [selectedImage, setSelectedImage] = useState<File | null>(null);
@@ -14,7 +15,7 @@ const ProfilePicComponent: React.FC = () => {
             {
                 selectedImage
                     ? <img src={URL.createObjectURL(selectedImage)} alt="Profile Picture" />
-                    : <img src={'https://via.placeholder.com/150'} alt="Profile Picture" />
+                    : <img src={pfpLogo} alt="Image" style={{ width: 150, height: 150 }} />
             }
         </div>
     );

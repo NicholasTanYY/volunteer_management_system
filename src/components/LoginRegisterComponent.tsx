@@ -2,9 +2,13 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
 import axios from 'axios';
+<<<<<<< HEAD
 import { storeUsername } from '../redux/reducers/usernameSlice';
 import { useAppDispatch } from '../redux/hooks';
 
+=======
+import login from '../images/loginImage.jpeg';
+>>>>>>> eff4bbe10efb27815b1066fea16462be7d3a983e
 
 interface LoginRegisterProps {
     isAdmin: boolean;
@@ -31,7 +35,7 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(isLogin ? loginInfo: registerInfo); // TODO: database logic here
+        console.log(isLogin ? loginInfo : registerInfo); // TODO: database logic here
 
         if (isLogin) {
             if (isAdmin) {
@@ -39,7 +43,7 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                 try {
                     response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/admin/login`, loginInfo);
                 } catch (e) {
-                    response = {data: {message: "Login successful!"}};
+                    response = { data: { message: "Login successful!" } };
                 }
                 console.log(JSON.stringify(response.data));
                 if (response.data.message !== "Login successful!") {
@@ -53,7 +57,7 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                 try {
                     response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/login`, loginInfo);
                 } catch (e) {
-                    response = {data: {message: "Login successful!"}};
+                    response = { data: { message: "Login successful!" } };
                 }
                 console.log(JSON.stringify(response.data));
                 if (response.data.message !== "Login successful!") {
@@ -93,7 +97,7 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
         <Container>
             <div className="d-flex justify-content-evenly vh-100">
                 <div className="d-flex flex-column justify-content-center">
-                    <h1>Image</h1>
+                    <img src={login} alt="Image" style={{ width: 300, height: 200 }} />
                 </div>
                 <div className="d-flex flex-column justify-content-center">
                     <h1 className="text-center">
