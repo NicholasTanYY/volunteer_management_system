@@ -89,6 +89,11 @@ app.post('/user/data', async (req, res) => {
     res.json(usersWithUsername);
 });
 
+app.get('/user/getEvents', async (req, res) => {
+    const events = await AppDataSource.getRepository(Event).find();
+    res.json(events);
+});
+
 
 // Admin related functions
 
