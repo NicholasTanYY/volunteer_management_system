@@ -28,12 +28,16 @@ const UserEventsPage: React.FC = () => {
     !isDone
       ? <div></div>
       :
-    <div>
+    <div className="vh-100">
       <UserNavigationbar />
       <h1>Events</h1>
-      {events.map(event => (
-        <UserEventRendererComponent event={event} />
-      ))}
+      <div className="d-flex justify-content-center">
+        <div className="w-75 d-flex justify-content-evenly overflow-auto">
+          {events.map(event => (
+            <UserEventRendererComponent event={event} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

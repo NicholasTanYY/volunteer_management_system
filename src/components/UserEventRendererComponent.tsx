@@ -24,7 +24,7 @@ const UserEventRendererComponent: React.FC<UserEventRendererProps> = ({ event })
     }
 
     return (
-        <div className='event-card'>
+        <div className="vw-25 shadow rounded">
             <div>
                 <img src={login} alt="Event" className="event-image" />
             </div>

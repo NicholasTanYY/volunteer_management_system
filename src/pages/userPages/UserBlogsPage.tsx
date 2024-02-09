@@ -29,7 +29,7 @@ const UserBlogsPage: React.FC = () => {
     const getEvent = async () => {
         const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/getEvent`, {username:username});
         const response2 = await axios.get(`${process.env.REACT_APP_REQUEST_LINK}/user/getBlogs`);
-        const events = response.data;
+        const events = response.data == null ? [] :response.data;
         setMappedEvents(events.map((event: string) => {
             return { value: event, label: event };
         }));
