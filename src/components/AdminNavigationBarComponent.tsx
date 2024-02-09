@@ -1,12 +1,13 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import bigAtHeartLogo from '../images/bigAtHeartLogo.jpeg';
 
 const AdminNavigationbar: React.FC = () => {
   return (
     <Navbar expand="lg" bg="dark" variant="dark">
       <Navbar.Brand as={Link} to="/adminHome">
-        VOLUNASIA admin
+        <img src={bigAtHeartLogo} alt="Image" style={{ width: 50, height: 40 }} />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
