@@ -53,8 +53,15 @@ const AdminReportsPage: React.FC = () => {
       <AdminNavigationbar />
       <h1>Reports</h1>
       <Box sx={{ width: '100%' }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-          <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Box sx={{ borderBottom: 1, display: "flex", justifyContent: "center" }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+            sx={{
+              '& .Mui-selected': { color: 'white', backgroundColor: 'brown' },
+            }}
+          >
             <Tab label="Individual" {...a11yProps(0)} />
             <Tab label="By Demographics" {...a11yProps(1)} />
             <Tab label="By Activity" {...a11yProps(2)} />

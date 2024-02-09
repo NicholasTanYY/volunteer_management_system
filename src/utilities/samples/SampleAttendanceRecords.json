@@ -1,0 +1,109 @@
+{
+    "rows": [
+        {
+            "id": "1",
+            "Date": "2021-10-01",
+            "Activity": "Activity 1",
+            "Duration": 3,
+            "Attendance": true
+        },
+        {
+            "id": "2",
+            "Date": "2021-10-02",
+            "Activity": "Activity 2",
+            "Duration": 2,
+            "Attendance": false
+        },
+        {
+            "id": "3",
+            "Date": "2021-10-03",
+            "Activity": "Activity 3",
+            "Duration": 1,
+            "Attendance": true
+        },
+        {
+            "id": "4",
+            "Date": "2021-10-04",
+            "Activity": "Activity 4",
+            "Duration": 4,
+            "Attendance": false
+        },
+        {
+            "id": "5",
+            "Date": "2021-10-05",
+            "Activity": "Activity 5",
+            "Duration": 2,
+            "Attendance": true
+        },
+        {
+            "id": "6",
+            "Date": "2021-10-01",
+            "Activity": "Activity 1",
+            "Duration": 3,
+            "Attendance": true
+        },
+        {
+            "id": "7",
+            "Date": "2021-10-02",
+            "Activity": "Activity 2",
+            "Duration": 2,
+            "Attendance": false
+        },
+        {
+            "id": "8",
+            "Date": "2021-10-03",
+            "Activity": "Activity 3",
+            "Duration": 1,
+            "Attendance": true
+        },
+        {
+            "id": "9",
+            "Date": "2021-10-04",
+            "Activity": "Activity 4",
+            "Duration": 4,
+            "Attendance": false
+        },
+        {
+            "id": "10",
+            "Date": "2021-10-05",
+            "Activity": "Activity 5",
+            "Duration": 2,
+            "Attendance": true
+        },
+        {
+            "id": "11",
+            "Date": "2021-10-01",
+            "Activity": "Activity 1",
+            "Duration": 3,
+            "Attendance": true
+        },
+        {
+            "id": "12",
+            "Date": "2021-10-02",
+            "Activity": "Activity 2",
+            "Duration": 2,
+            "Attendance": false
+        },
+        {
+            "id": "13",
+            "Date": "2021-10-03",
+            "Activity": "Activity 3",
+            "Duration": 1,
+            "Attendance": true
+        },
+        {
+            "id": "14",
+            "Date": "2021-10-04",
+            "Activity": "Activity 4",
+            "Duration": 4,
+            "Attendance": false
+        },
+        {
+            "id": "15",
+            "Date": "2021-10-05",
+            "Activity": "Activity 5",
+            "Duration": 2,
+            "Attendance": true
+        }
+    ]
+}
