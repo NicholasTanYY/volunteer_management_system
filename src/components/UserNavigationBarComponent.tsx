@@ -15,8 +15,8 @@ const UserNavigationbar: React.FC = () => {
         <Nav className="ms-auto">
           <Nav.Link className="text-dark" as={Link} to="/userHome">Home</Nav.Link>
           <Nav.Link className="text-dark" as={Link} to="/userEvents">Events</Nav.Link>
+          <Nav.Link className="text-dark" as={Link} to="/userRecords">Records</Nav.Link>
           <Nav.Link className="text-dark" as={Link} to="/userBlogs">Blogs</Nav.Link>
-          <Nav.Link className="text-dark" as={Link} to="/userContactUs">Contact Us</Nav.Link>
         </Nav>
       </Navbar.Collapse>
       <Nav className="ms-auto">

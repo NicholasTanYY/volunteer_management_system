@@ -1,7 +1,8 @@
 export interface AttendanceRecord {
-    id: string;
+    id: number;
     Date: string;
     Activity: string;
     Duration: number;
     Attendance: boolean;
+    certificateStage: string;
 }

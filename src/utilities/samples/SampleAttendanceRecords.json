@@ -1,109 +1,124 @@
 {
     "rows": [
         {
-            "id": "1",
+            "id": 1,
             "Date": "2021-10-01",
             "Activity": "Activity 1",
             "Duration": 3,
-            "Attendance": true
+            "Attendance": true,
+            "certificateStage": "Able to Request"
         },
         {
-            "id": "2",
+            "id": 2,
             "Date": "2021-10-02",
             "Activity": "Activity 2",
             "Duration": 2,
-            "Attendance": false
+            "Attendance": false,
+            "certificateStage": "Not Able to Request"
         },
         {
-            "id": "3",
+            "id": 3,
             "Date": "2021-10-03",
             "Activity": "Activity 3",
             "Duration": 1,
-            "Attendance": true
+            "Attendance": true,
+            "certificateStage": "Able to Request"
         },
         {
-            "id": "4",
+            "id": 4,
             "Date": "2021-10-04",
             "Activity": "Activity 4",
             "Duration": 4,
-            "Attendance": false
+            "Attendance": false,
+            "certificateStage": "Not Able to Request"
         },
         {
-            "id": "5",
+            "id": 5,
             "Date": "2021-10-05",
             "Activity": "Activity 5",
             "Duration": 2,
-            "Attendance": true
+            "Attendance": true,
+            "certificateStage": "Pending"
         },
         {
-            "id": "6",
+            "id": 6,
             "Date": "2021-10-01",
             "Activity": "Activity 1",
             "Duration": 3,
-            "Attendance": true
+            "Attendance": true,
+            "certificateStage": "Ready To Download"
         },
         {
-            "id": "7",
+            "id": 7,
             "Date": "2021-10-02",
             "Activity": "Activity 2",
             "Duration": 2,
-            "Attendance": false
+            "Attendance": false,
+            "certificateStage": "Not Able to Request"
         },
         {
-            "id": "8",
+            "id": 8,
             "Date": "2021-10-03",
             "Activity": "Activity 3",
             "Duration": 1,
-            "Attendance": true
+            "Attendance": true,
+            "certificateStage": "Pending"
         },
         {
-            "id": "9",
+            "id": 9,
             "Date": "2021-10-04",
             "Activity": "Activity 4",
             "Duration": 4,
-            "Attendance": false
+            "Attendance": false,
+            "certificateStage": "Not Able to Request"
         },
         {
-            "id": "10",
+            "id": 10,
             "Date": "2021-10-05",
             "Activity": "Activity 5",
             "Duration": 2,
-            "Attendance": true
+            "Attendance": true,
+            "certificateStage": "Ready To Download"
         },
         {
-            "id": "11",
+            "id": 11,
             "Date": "2021-10-01",
             "Activity": "Activity 1",
             "Duration": 3,
-            "Attendance": true
+            "Attendance": true,
+            "certificateStage": "Ready To Download"
         },
         {
-            "id": "12",
+            "id": 12,
             "Date": "2021-10-02",
             "Activity": "Activity 2",
             "Duration": 2,
-            "Attendance": false
+            "Attendance": false,
+            "certificateStage": "Not Able to Request"
         },
         {
-            "id": "13",
+            "id": 13,
             "Date": "2021-10-03",
             "Activity": "Activity 3",
             "Duration": 1,
-            "Attendance": true
+            "Attendance": true,
+            "certificateStage": "Ready To Download"
         },
         {
-            "id": "14",
+            "id": 14,
             "Date": "2021-10-04",
             "Activity": "Activity 4",
             "Duration": 4,
-            "Attendance": false
+            "Attendance": false,
+            "certificateStage": "Not Able to Request"
         },
         {
-            "id": "15",
+            "id": 15,
             "Date": "2021-10-05",
             "Activity": "Activity 5",
             "Duration": 2,
-            "Attendance": true
+            "Attendance": true,
+            "certificateStage": "Ready To Download"
         }
     ]
 }
