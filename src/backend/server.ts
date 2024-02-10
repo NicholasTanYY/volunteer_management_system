@@ -104,7 +104,10 @@ app.post('/user/getEvent', async (req, res) => {
 
 app.post('/user/getEventDetails', async (req, res) => {
     const result: Event[] = []
-    const {eventNames} = req.body;
+    let {eventNames} = req.body;
+    if (eventNames == null) {
+        eventNames = []
+    }
     for (let i = 0; i < eventNames.length; i++) {
         const event = await AppDataSource.getRepository(Event).findOneBy({name: eventNames[i]});
         if (event == null) {
@@ -228,5 +231,5 @@ app.get('/viewDB', async (req, res) => {
     const results = await AppDataSource.getRepository(User).find();
     const results2 = await AppDataSource.getRepository(Event).find();
     const results3 = await AppDataSource.getRepository(Blog).find();
-    res.json(results2);
+    res.json(results);
 })
