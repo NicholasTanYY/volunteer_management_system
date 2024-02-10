@@ -6,4 +6,5 @@ export interface EventInfo {
     category: any;
     description: string;
     createdBy: string;
+    location: string;
 }

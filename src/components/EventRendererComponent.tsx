@@ -25,6 +25,7 @@ const EventRendererComponent: React.FC<EventRendererProps> = ({ event, onClick }
                         ))}
                     </div>
                     <h3 className="event-name">{event.name}</h3>
+                <p className="mb-2">@{event.location}</p>
                     <h5>{event.startTime} - {event.endTime}</h5>
                     <p>{event.description}</p>
                 </div>

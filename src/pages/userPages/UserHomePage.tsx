@@ -15,7 +15,7 @@ const UserHomePage: React.FC = () => {
       <h1>Hello {username}!</h1>
       <h3>My Events</h3>
       <div className="d-flex justify-content-evenly">
-        <div>
+        <div className="w-50">
           <div className="shadow rounded p-2">
             <CalendarComponent />
           </div>

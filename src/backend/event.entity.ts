@@ -25,4 +25,7 @@ export class Event {
 
     @Column({type:'simple-array', nullable: true})
     usersSignedupFor: string[] | null
+
+    @Column({type:'varchar', nullable: true})
+    location: string | null
 }

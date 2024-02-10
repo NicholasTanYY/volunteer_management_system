@@ -20,6 +20,7 @@ const AdminCreateEventModalComponent: React.FC = () => {
     category: '',
     description: '',
     createdBy: username,
+    location: ''
   });
 
   const handleClose = () => setShowModal(false);
@@ -85,6 +86,10 @@ const AdminCreateEventModalComponent: React.FC = () => {
             <label>
               End Time:
               <input type="time" className="form-control" name="endTime" value={newEventInfo.endTime} onChange={handleNewEventChange} />
+            </label>
+            <label>
+              Location:
+              <input type="text" className="form-control" name="location" value={newEventInfo.location} onChange={handleNewEventChange} />
             </label>
             <label>
               Categories:

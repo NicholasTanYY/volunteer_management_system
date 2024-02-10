@@ -24,7 +24,7 @@ const AdminNotificationComponent: React.FC = () => {
         !isDone
             ? <div></div>
             :
-        <div className="vh-100">
+        <div className="vh-100 w-25">
             <h2>Notifications</h2>
             {notifications.length == 0 && <h5>No upcoming events!</h5>}
             <div className="h-50 overflow-auto shadow rounded">

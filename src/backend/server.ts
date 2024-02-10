@@ -195,12 +195,12 @@ app.post('/admin/createAccount', async (req, res) => {
 })
 
 app.post('/admin/createEvent', async (req, res) => {
-    const {name, date, startTime, endTime, category, description, createdBy} = req.body;
+    const {name, date, startTime, endTime, category, description, createdBy, location} = req.body;
     const eventWithName = await AppDataSource.getRepository(Event).findOneBy({name: name});
     if (eventWithName != null) {
         res.json({message: "Event already exists!"});
     }
-    const event = await AppDataSource.getRepository(Event).create({name, date, startTime, endTime, category, description, createdBy});
+    const event = await AppDataSource.getRepository(Event).create({name, date, startTime, endTime, category, description, createdBy, location});
     const results = await AppDataSource.getRepository(Event).save(event);
     res.json({message: "Event added!"});
 })
@@ -240,5 +240,5 @@ app.get('/viewDB', async (req, res) => {
     const results = await AppDataSource.getRepository(User).find();
     const results2 = await AppDataSource.getRepository(Event).find();
     const results3 = await AppDataSource.getRepository(Blog).find();
-    res.json([results, results2, results3]);
+    res.json(results2);
 })
