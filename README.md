@@ -35,6 +35,7 @@ three clicks.
 Each feature is designed to enhance the experience for both volunteers and organizers, streamlining processes, and fostering a sense of community and recognition within the platform.
 
 ## [Run our project](#project-run)
+#### Note: As we leverage a free subscription for the backend server, we request your patience in allowing some time (about 1 minute) for the server to start up (during which it will appear as if login has failed) when you attempt to log in for the first time in a while.  We advise you to wait a few moments before attempting the login again.
 ### Run from Github Installation
 1. Pull the repository
 2. Run ```npm i``` to install dependencies in ```package.json``` <br> 
