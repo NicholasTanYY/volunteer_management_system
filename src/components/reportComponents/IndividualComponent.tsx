@@ -113,7 +113,7 @@ const IndividualComponent: React.FC = () => {
                                             </StyledTableCell>
                                             <StyledTableCell align="center">{row.Date}</StyledTableCell>
                                             <StyledTableCell align="center">{row.Activity}</StyledTableCell>
-                                            <StyledTableCell align="center">{row.Duration}</StyledTableCell>
+                                            <StyledTableCell align="center">{row.Duration} hours</StyledTableCell>
                                             <StyledTableCell align="center">{row.Attendance ? "Present" : "Absent"}</StyledTableCell>
                                         </StyledTableRow>
                                     ))}

@@ -10,7 +10,6 @@ import StartScreen from './pages/StartScreen';
 import UserHomePage from './pages/userPages/UserHomePage';
 import UserProfilePage from './pages/userPages/UserProfilePage';
 import UserEventsPage from './pages/userPages/UserEventsPage';
-import UserContactUsPage from './pages/userPages/UserContactUsPage';
 import AdminHomePage from './pages/adminPages/AdminHomePage';
 import AdminEventsPage from './pages/adminPages/AdminEventsPage';
 import AdminReportsPage from './pages/adminPages/AdminReportsPage';
@@ -18,6 +17,7 @@ import UserLoginPage from './pages/userPages/UserLoginPage';
 import AdminLoginPage from './pages/adminPages/AdminLoginPage';
 import UserRegisterPage from './pages/userPages/UserRegisterPage';
 import UserBlogsPage from './pages/userPages/UserBlogsPage';
+import UserRecordsPage from './pages/userPages/UserRecordsPage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -34,9 +34,8 @@ root.render(
           <Route path="/userProfile" element={<UserProfilePage />} />
           <Route path="/userBlogs" element={<UserBlogsPage />} />
           <Route path="/userEvents" element={<UserEventsPage />} />
-          <Route path="/userContactUs" element={<UserContactUsPage />} />
+          <Route path="/userRecords" element={<UserRecordsPage />} />
           <Route path="/adminLogin" element={<AdminLoginPage />} />
-          {/* <Route path="/adminRegister" element={<AdminRegisterPage />} /> */}
           <Route path="/adminHome" element={<AdminHomePage />} />
           <Route path="/adminEvents" element={<AdminEventsPage />} />
           <Route path="/adminReports" element={<AdminReportsPage />} />
