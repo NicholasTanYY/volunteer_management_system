@@ -211,6 +211,15 @@ app.post('/admin/getEvents', async (req, res) => {
     res.json(events);
 })
 
+app.get('/admin/getUsers', async (req, res) => {
+    const users = await AppDataSource.getRepository(User).find();
+    const results = []
+    for (let i = 0; i < users.length; i++) {
+        results.push({value:users[i].username, label:users[i].username});
+    }
+    res.json(results);
+})
+
 // temporary utility functions
 app.post('/user/clear', async (req, res) => {
     const results = await AppDataSource.getRepository(User).clear();
@@ -231,5 +240,5 @@ app.get('/viewDB', async (req, res) => {
     const results = await AppDataSource.getRepository(User).find();
     const results2 = await AppDataSource.getRepository(Event).find();
     const results3 = await AppDataSource.getRepository(Blog).find();
-    res.json(results2);
+    res.json([results, results2, results3]);
 })

@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import attendanceData from '../../utilities/samples/SampleAttendanceRecords.json';
 import { AttendanceRecord } from '../../utilities/AttendanceRecordInterface';
 import * as XLSX from 'xlsx';
+import axios from 'axios';
 import AllNames from '../../utilities/AllVolunteerNames';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -42,6 +43,16 @@ const rows: AttendanceRecord[] = attendanceData.rows;
 
 const IndividualComponent: React.FC = () => {
     const [volunteerName, setVolunteerName] = useState<VolunteerNameType | null>(null);
+    const [allUsers, setAllUsers] = useState();
+
+    const getAllUsers = async () => {
+        const response = await axios.get(`${process.env.REACT_APP_REQUEST_LINK}/admin/getUsers`);
+        setAllUsers(response.data);
+    }
+
+    useEffect(() => {
+        getAllUsers();
+    }, [])
 
     const handleDownloadPress = (event: { preventDefault: () => void; }) => {
         event.preventDefault();
@@ -53,7 +64,7 @@ const IndividualComponent: React.FC = () => {
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, "Sheet1");
 
-        XLSX.writeFile(wb, fileName);   
+        XLSX.writeFile(wb, fileName);
     }
 
     const handleNameChange = (selectedOption: any) => {
@@ -69,7 +80,7 @@ const IndividualComponent: React.FC = () => {
                             value={volunteerName}
                             placeholder="Select volunteer"
                             onChange={handleNameChange}
-                            options={AllNames}
+                            options={allUsers}
                             isMulti={false} // do not allow multiple selections
                             className="basic-multi-select"
                             classNamePrefix="select"

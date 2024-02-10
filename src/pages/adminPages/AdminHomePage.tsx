@@ -13,7 +13,7 @@ const AdminHomePage: React.FC = () => {
   return (
     <div>
       <AdminNavigationbar />
-      <h1>Hello Admin!</h1>
+      <h1>Hello {username}!</h1>
       <h3>My Events</h3>
       <div className="d-flex justify-content-evenly">
           <AdminCalendarComponent />
