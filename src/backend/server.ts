@@ -207,7 +207,7 @@ app.post('/admin/createEvent', async (req, res) => {
 
 app.post('/admin/getEvents', async (req, res) => {
     const {createdBy} = req.body;
-    const events = await AppDataSource.getRepository(Event).findBy({createdBy: createdBy});
+    const events = await AppDataSource.getRepository(Event).find({where:{createdBy: createdBy}});
     res.json(events);
 })
 
@@ -231,5 +231,5 @@ app.get('/viewDB', async (req, res) => {
     const results = await AppDataSource.getRepository(User).find();
     const results2 = await AppDataSource.getRepository(Event).find();
     const results3 = await AppDataSource.getRepository(Blog).find();
-    res.json(results);
+    res.json(results2);
 })

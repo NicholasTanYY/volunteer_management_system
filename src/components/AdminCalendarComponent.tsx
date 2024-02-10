@@ -10,15 +10,13 @@ import { RootState } from '../redux/store';
 import { EventInfo } from '../utilities/EventInfoInterface';
 import axios from 'axios';
 
-const CalendarComponent: React.FC = () => {
+const AdminCalendarComponent: React.FC = () => {
     const username = useAppSelector(state => state.username.value);
     const [notifications, setNotifications] = useState<EventInfo[]>([]);
     const [isDone, setIsDone] = useState(false);
     const getEvents = async () => {
-      const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/getEvent`, {username: username});
-      console.log(response.data);
-      const eventsSignedupFor = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/getEventDetails`, {eventNames: response.data});
-      setNotifications(eventsSignedupFor.data);
+      const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/admin/getEvents`, {createdBy: username});
+      setNotifications(response.data);
       setIsDone(true);
     }
 
@@ -114,4 +112,4 @@ const CalendarComponent: React.FC = () => {
     );
 };
 
-export default CalendarComponent;
+export default AdminCalendarComponent;

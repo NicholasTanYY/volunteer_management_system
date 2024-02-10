@@ -27,6 +27,7 @@ const NotificationComponent: React.FC = () => {
             :
         <div>
             <h2>Notifications</h2>
+            {notifications.length == 0 && <h5>No upcoming events!</h5>}
             {notifications.map(event => (
                 <NotificationRendererComponent event={event} />
             ))}
