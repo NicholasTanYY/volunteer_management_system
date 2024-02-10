@@ -17,12 +17,27 @@ strive to simplify and enhance the user experience by ensuring
 that every feature and functionality is easily accessible within
 three clicks.
 
-## [Approach]()
+## [Approach](#approach)
 #### Logging in
 
+## Brief Overview
+**Event Listing and Registration**: Volunteers can easily browse through a chronological list of events, obtain detailed information with a single click, and register seamlessly.
 
+**Personalized Dashboard**: A user-friendly interface on the 'Home' tab presents volunteers with upcoming events and a snapshot of their participation history.
 
-## [Run our project!]()
+**Account Creation and Profile Management**: A streamlined process allows volunteers to create accounts and manage their profiles, keeping track of their participation and personal volunteer journey.
+
+**Event Records and Certification**: Volunteers have access to their past events and can request or download certificates of attendance, providing a tangible record of their contributions.
+
+**Blogging Platform**: A section for volunteers to view and publish blogs, encouraging community engagement and the sharing of experiences.
+
+**Admin Event and Attendance Management**: Administrators can view, create, and manage events as well as take attendance with ease, ensuring efficient event coordination.
+
+**Progress Tracking**: Both volunteers and administrators can track hours contributed and events attended, promoting a sense of achievement and motivation.
+
+Each feature is designed to enhance the experience for both volunteers and organizers, streamlining processes, and fostering a sense of community and recognition within the platform.
+
+## [Run our project!](#project-run)
 ### Run from Github Installation
 1. Pull the repository
 2. Run ```npm i``` to install dependencies in ```package.json``` <br> 
