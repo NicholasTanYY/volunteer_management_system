@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import AdminNavigationbar from '../../components/AdminNavigationBarComponent';
-// requestCerts
-import GenCertsComponent from '../../components/GenCertsComponent';
-//=======
+import GenCertsComponent from '../../components/certificateComponents/GenCertsComponent';
 import { useAppSelector } from '../../redux/hooks';
 import AdminCalendarComponent from '../../components/AdminCalendarComponent';
 import AdminNotificationComponent from '../../components/AdminNotificationComponent';
-// main
 
 const AdminHomePage: React.FC = () => {
   const username = useAppSelector(state => state.username.value);

@@ -6,6 +6,7 @@
             "eventName": "Donation Drive Event",
             "dateRequested": "16 June 2023",
             "timeRequested": "6.30pm",
+            "eventDate": "16 June 2023",
             "eventAttendance": true,
             "totalDuration": 2
         },
@@ -15,6 +16,7 @@
             "eventName": "Donation Drive Event",
             "dateRequested": "11 June 2023",
             "timeRequested": "6.10pm",
+            "eventDate": "6 June 2023",
             "eventAttendance": true,
             "totalDuration": 4
         }
