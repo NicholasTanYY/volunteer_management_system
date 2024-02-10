@@ -4,9 +4,8 @@
 2. [Project Objectives](#project-objectives)
 3. [Approach](#approach)
 4. [Brief Overview](#brief-overview)
-4. [Project Structure](#project-structure)
-4. [Details of our solution](#project-details)
 5. [Run our project](#project-run)
+6. [Others](#project-others)
 ## [Problem Statement](#problem-statement)
 Develop a cost-effective system for volunteers to enroll, manage activities, and request certificates, while enabling nonprofit administrators to efficiently handle forms, attendance, and generate detailed reports.
 
@@ -46,6 +45,6 @@ Each feature is designed to enhance the experience for both volunteers and organ
 2. Testing the Volunteer account - Register for a new account, then Login using the registered credentials
 3. Testing the Admin Account - Use the username ```H4G Admin``` and the password ```H4G Admin```
 
-## [Others]()
+## [Others](#project-others)
 Q: Why can't we create admin accounts? <br>
 A: Admin account creations should be done by an authorised member of Big At Hearts, therefore we have provided a sample account for testing.
