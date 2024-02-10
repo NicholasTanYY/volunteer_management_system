@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
-import { CertInfo } from '../utilities/CertInfoInterface';
+import { CertInfo } from '../../utilities/CertInfoInterface';
 import { Button, Modal } from 'react-bootstrap';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import CertificateTemplate from './CertificateTemplateComponent';
 
 interface CertRendererProps {
     cert: CertInfo;
 }
+const certificateRef = React.createRef<HTMLDivElement>();
 
 const CertRendererComponent: React.FC<CertRendererProps> = ({ cert }) => {
     const [showModal, setShowModal] = useState(false);
@@ -17,9 +21,19 @@ const CertRendererComponent: React.FC<CertRendererProps> = ({ cert }) => {
         setShowModal(false);
     };
 
-    const generateCertificate = () => {
-        // Add the code to generate the certificate here
-    }
+    const generateCertificate = async () => {
+        console.log(certificateRef.current); // Debugging line to see if the ref is correctly set
+        if (!certificateRef.current) {
+            console.error('Certificate element is not rendered yet.');
+            return;
+        }
+        const canvas = await html2canvas(certificateRef.current);
+        const dataURL = canvas.toDataURL('image/png');
+
+        const pdf = new jsPDF('p', 'mm', [canvas.width * 0.264583, canvas.height * 0.264583 * 1.2]);
+        pdf.addImage(dataURL, 'PNG', 0, 0, pdf.internal.pageSize.getWidth(), pdf.internal.pageSize.getHeight());
+        pdf.save(`${cert.name} - Certificate of Participation - ${cert.eventName}.pdf`);
+    };
 
     return (
         <div style={{ border: '1px solid black', margin: '10px', padding: '10px' }} >
@@ -42,6 +56,7 @@ const CertRendererComponent: React.FC<CertRendererProps> = ({ cert }) => {
                     <p><strong>Event Name:</strong> {cert.eventName}</p>
                     <p><strong>Event Attendance:</strong> {cert.eventAttendance ? "Present" : "Absent"}</p>
                     <p><strong>Total Duration:</strong> {cert.totalDuration}</p>
+                    <CertificateTemplate userData={cert} certificateRef={certificateRef} />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" onClick={generateCertificate}>

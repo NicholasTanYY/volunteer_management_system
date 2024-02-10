@@ -4,6 +4,7 @@ export interface CertInfo {
     eventName: string;
     dateRequested: string;
     timeRequested: string;
+    eventDate: string;
     eventAttendance: boolean;
     totalDuration: number;
 }
