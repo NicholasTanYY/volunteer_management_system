@@ -102,6 +102,19 @@ app.post('/user/getEvent', async (req, res) => {
     res.json(eventsSignedUpFor);
 });
 
+app.post('/user/getEventDetails', async (req, res) => {
+    const result: Event[] = []
+    const {eventNames} = req.body;
+    for (let i = 0; i < eventNames.length; i++) {
+        const event = await AppDataSource.getRepository(Event).findOneBy({name: eventNames[i]});
+        if (event == null) {
+            return;
+        }
+        result.push(event);
+    }
+    res.json(result);
+});
+
 app.post('/user/signupEvent', async (req, res) => {
     const {username, eventName} = req.body;
     const user = await AppDataSource.getRepository(User).findOneBy({username: username});

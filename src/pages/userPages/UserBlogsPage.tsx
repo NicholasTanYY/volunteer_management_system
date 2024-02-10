@@ -86,7 +86,7 @@ const UserBlogsPage: React.FC = () => {
             <UserNavigationbar />
             <h1>Blogs</h1>
             <div className=" vh-100 d-flex justify-content-around">
-                <div className="h-75 d-flex flex-column border overflow-auto">
+                <div className="h-75 w-50 d-flex flex-column border overflow-auto">
                     {blogs.map((blog, idx) =>
                         <BlogRendererComponent key={idx} blog={blog} onClick={() => {}} />
                     )}
