@@ -2,6 +2,7 @@ import React from 'react';
 import { EventInfo } from '../utilities/EventInfoInterface';
 import login from '../images/loginImage.jpeg';
 import '../styles/EventCard.css';
+import AdminTakeAttendanceModalComponent from './AdminTakeAttendanceModalComponent';
 
 interface EventRendererProps {
     event: EventInfo;
@@ -9,6 +10,7 @@ interface EventRendererProps {
 }
 
 const EventRendererComponent: React.FC<EventRendererProps> = ({ event, onClick }) => {
+
     return (
         <div className='event-card'>
             <div>
@@ -25,14 +27,16 @@ const EventRendererComponent: React.FC<EventRendererProps> = ({ event, onClick }
                         ))}
                     </div>
                     <h3 className="event-name">{event.name}</h3>
-                <p className="mb-2">@{event.location}</p>
+                    <p className="mb-2">@{event.location}</p>
                     <h5>{event.startTime} - {event.endTime}</h5>
                     <p>{event.description}</p>
                 </div>
                 <div>
-                    <button className="btn btn-outline-dark btn-lg take-attendance-btn" onClick={() => onClick(event)}>Take Attendance</button>
+                    <AdminTakeAttendanceModalComponent event={event}/>
                 </div>
             </div>
+            
+            
         </div>
     );
 };
