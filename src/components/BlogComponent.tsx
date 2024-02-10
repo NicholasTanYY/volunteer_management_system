@@ -16,7 +16,6 @@ const BlogComponent: React.FC = () => {
   const navigate = useNavigate();
   const getBlog = async () => {
     const response = await axios.get(`${process.env.REACT_APP_REQUEST_LINK}/user/getBlogs`);
-    console.log(response.data);
     setBlogs(response.data);
     setIsDone(true);
   }

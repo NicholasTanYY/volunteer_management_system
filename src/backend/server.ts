@@ -228,5 +228,5 @@ app.get('/viewDB', async (req, res) => {
     const results = await AppDataSource.getRepository(User).find();
     const results2 = await AppDataSource.getRepository(Event).find();
     const results3 = await AppDataSource.getRepository(Blog).find();
-    res.json(results3);
+    res.json(results2);
 })

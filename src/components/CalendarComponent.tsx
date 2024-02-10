@@ -1,4 +1,5 @@
-import React, { useState } from 'react'; import { Container, Table } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Table } from 'react-bootstrap';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import NavButton from './NavButtonComponent';
@@ -6,9 +7,24 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { chunkArray } from '../utilities/DateUtilities';
 import { storeSelectedDate } from '../redux/reducers/selectedDateSlice';
 import { RootState } from '../redux/store';
+import { EventInfo } from '../utilities/EventInfoInterface';
+import axios from 'axios';
 
 const CalendarComponent: React.FC = () => {
-    // Your calendar component logic goes here
+    const username = useAppSelector(state => state.username.value);
+    const [notifications, setNotifications] = useState<EventInfo[]>([]);
+    const [isDone, setIsDone] = useState(false);
+    const getEvents = async () => {
+      const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/getEvent`, {username: username});
+      const eventsSignedupFor = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/getEventDetails`, {eventNames: response.data});
+      setNotifications(eventsSignedupFor.data);
+      setIsDone(true);
+    }
+
+    useEffect(() => {
+        getEvents();
+    }, []);
+
     const [currentMonth, setCurrentMonth] = useState(new Date(useAppSelector((state: RootState) => (state.selectedDate.value))));
     const dispatch = useAppDispatch();
 
@@ -33,7 +49,25 @@ const CalendarComponent: React.FC = () => {
         }
     };
 
+    // Render events on the calendar
+    const renderEvents = (date: string) => {
+        const eventForDate = notifications.find(event => event.date === date);
+        if (eventForDate) {
+            return (
+                <div>
+                    <div className="badge bg-secondary">
+                        {eventForDate.name}
+                    </div>
+                </div>
+            );
+        }
+        return null;
+    };
+
     return (
+    !isDone
+        ? <div></div>
+        :
         <Container>
             <h2 className="text-center my-4">
                 {currentMonth.toLocaleString('en-us', { month: 'long', year: 'numeric' })}
@@ -68,6 +102,7 @@ const CalendarComponent: React.FC = () => {
                                     onClick={() => handleDateClick(day, currentMonth)}
                                 >
                                     {day !== null ? day : ''}
+                                    {day !== null && renderEvents(`${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`)}
                                 </td>
                             ))}
                         </tr>
