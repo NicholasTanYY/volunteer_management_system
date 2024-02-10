@@ -67,7 +67,7 @@ const AdminCalendarComponent: React.FC = () => {
     !isDone
         ? <div></div>
         :
-        <Container>
+        <div className="shadow rounded p-2 h-50">
             <h2 className="text-center my-4">
                 {currentMonth.toLocaleString('en-us', { month: 'long', year: 'numeric' })}
             </h2>
@@ -108,7 +108,7 @@ const AdminCalendarComponent: React.FC = () => {
                     ))}
                 </tbody>
             </Table>
-        </Container>
+        </div>
     );
 };
 
