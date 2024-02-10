@@ -8,12 +8,13 @@ import ProfilePicComponent from '../../components/ProfilePicComponent';
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
 import { useAppSelector } from '../../redux/hooks';
-import { redirect } from 'react-router-dom';
+import CircularProgress from '@mui/joy/CircularProgress';
 
 const UserProfilePage: React.FC = () => {
   // const navigate = useNavigate();
   const username = useAppSelector(state => state.username.value);
   const [isDone, setIsDone] = useState(false);
+  const goal = 5
   const [profileInfo, setProfileInfo] = useState<UserProfile>({
     username: username,
     fullName: '',
@@ -27,10 +28,14 @@ const UserProfilePage: React.FC = () => {
     interests: [],
     skills: [],
   });
+  const [numOfBlogs, setNumOfBlogs] = useState(0);
+  const [eventCount, setEventCount] = useState(0);
 
   const fetchData = async () => {
     setIsDone(false);
     const response = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/data`, {username});
+    const response2 = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/getBlog`, {username});
+    const response3 = await axios.post(`${process.env.REACT_APP_REQUEST_LINK}/user/getEvent`, {username});
     let {fullName, gender, dateOfBirth, email, phoneNumber, availability, occupation, school, interests, skills} = response.data;
     if (interests == null) {
       interests = []
@@ -42,6 +47,8 @@ const UserProfilePage: React.FC = () => {
     } else {
       skills = skills.map((label:string) => AllSkillSets.find(item => item.label === label));
     }
+    setEventCount(response3.data.length);
+    setNumOfBlogs(response2.data);
     setProfileInfo({username, fullName, gender, dateOfBirth, email, phoneNumber, availability, occupation, school, interests, skills});
     setIsDone(true);
   };
@@ -141,6 +148,25 @@ const UserProfilePage: React.FC = () => {
                   className="basic-multi-select"
                   classNamePrefix="select"
                 />
+              </label>
+            </div>
+            <div className="shadow rounded d-flex justify-content-center w-100 h-25 p-4">
+              <label className="w-100">
+                <h5>Progress</h5>
+                <div className="d-flex justify-content-evenly">
+                  <div className="d-flex flex-column align-items-center">
+                    <CircularProgress size="lg" determinate value={eventCount * 100 / goal}>
+                    {eventCount} / {goal}
+                    </CircularProgress>
+                    Events Volunteered!
+                  </div>
+                  <div className="d-flex flex-column align-items-center">
+                    <CircularProgress size="lg" determinate value={numOfBlogs * 100 / goal}>
+                      {numOfBlogs} / {goal}
+                    </CircularProgress>
+                    Blogs posted!
+                  </div>
+                </div>
               </label>
             </div>
           </div>

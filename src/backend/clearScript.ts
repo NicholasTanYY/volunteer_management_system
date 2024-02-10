@@ -8,4 +8,8 @@ export const clearFunction = async (db: string) => {
     console.log(JSON.stringify(response.data));
 }
 
-clearFunction("blog");
+
+// user
+// event
+// blog
+clearFunction("user");

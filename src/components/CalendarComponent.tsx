@@ -53,16 +53,20 @@ const CalendarComponent: React.FC = () => {
     // Render events on the calendar
     const renderEvents = (date: string) => {
         const eventForDate = notifications.find(event => event.date === date);
-        if (eventForDate) {
-            return (
-                <div>
-                    <div className="badge bg-secondary">
-                        {eventForDate.name}
+        const result:any[] = []
+        notifications.forEach(event => {
+            if (event.date === date) {
+                result.push(
+                    <div>
+                        <div className="badge bg-secondary">
+                            {event.name}
+                        </div>
                     </div>
-                </div>
-            );
-        }
-        return null;
+                )
+            }
+            result.push(null);
+        });
+        return result;
     };
 
     return (

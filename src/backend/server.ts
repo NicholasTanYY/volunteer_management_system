@@ -158,9 +158,13 @@ app.post('/user/createBlogPost', async (req, res) => {
 app.get('/user/getBlogs', async (req, res) => {
     const blogs = await AppDataSource.getRepository(Blog).find();
     res.json(blogs);
-}
+})
 
-)
+app.post('/user/getBlog', async (req, res) => {
+    const {username} = req.body;
+    const [blogs, blogsCount] = await AppDataSource.getRepository(Blog).findAndCountBy({createdBy: username});
+    res.json(blogsCount);
+})
 
 // Admin related functions
 
@@ -236,9 +240,8 @@ app.post('/blog/clear', async (req, res) => {
     res.json({message: "DB reset!"});
 })
 
-app.get('/viewDB', async (req, res) => {
-    const results = await AppDataSource.getRepository(User).find();
-    const results2 = await AppDataSource.getRepository(Event).find();
-    const results3 = await AppDataSource.getRepository(Blog).find();
-    res.json(results2);
+app.post('/viewDB', async (req, res) => {
+    const {entity} = req.body;
+    const results = await AppDataSource.getRepository(entity).find();
+    res.json(results);
 })
