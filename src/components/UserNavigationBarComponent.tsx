@@ -6,17 +6,17 @@ import pfpLogo from '../images/pfp.jpeg';
 
 const UserNavigationbar: React.FC = () => {
   return (
-    <Navbar expand="lg" bg="dark" variant="dark">
+    <Navbar expand="lg" bg="light" variant="dark" className="border-bottom">
       <Navbar.Brand as={Link} to="/userHome">
         <img src={bigAtHeartLogo} alt="Image" style={{ width: 50, height: 40 }} />
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ms-auto">
-          <Nav.Link as={Link} to="/userHome">Home</Nav.Link>
-          <Nav.Link as={Link} to="/userEvents">Events</Nav.Link>
-          <Nav.Link as={Link} to="/userBlogs">Blogs</Nav.Link>
-          <Nav.Link as={Link} to="/userContactUs">Contact Us</Nav.Link>
+          <Nav.Link className="text-dark" as={Link} to="/userHome">Home</Nav.Link>
+          <Nav.Link className="text-dark" as={Link} to="/userEvents">Events</Nav.Link>
+          <Nav.Link className="text-dark" as={Link} to="/userBlogs">Blogs</Nav.Link>
+          <Nav.Link className="text-dark" as={Link} to="/userContactUs">Contact Us</Nav.Link>
         </Nav>
       </Navbar.Collapse>
       <Nav className="ms-auto">

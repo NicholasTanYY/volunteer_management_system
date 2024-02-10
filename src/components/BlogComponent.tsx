@@ -42,7 +42,7 @@ const BlogComponent: React.FC = () => {
     !isDone
       ? <div></div>
       :
-    <div>
+    <div className="w-75">
       <h2>Blogs</h2>
       {blogs.length > 0 && (
         <div>

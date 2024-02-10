@@ -28,11 +28,11 @@ const UserEventsPage: React.FC = () => {
     !isDone
       ? <div></div>
       :
-    <div className="vh-100">
+    <div className="vh-100" style={{background:"radial-gradient(#ffd8c5, #ffffff)"}}>
       <UserNavigationbar />
       <h1>Events</h1>
       <div className="d-flex justify-content-center h-75">
-        <div className="w-75 border d-flex justify-content-between overflow-auto">
+        <div className="w-75 border d-flex bg-light justify-content-between overflow-auto ">
           {events.map(event => (
             <UserEventRendererComponent event={event} />
           ))}

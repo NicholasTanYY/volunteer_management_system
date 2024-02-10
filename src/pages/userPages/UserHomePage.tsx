@@ -10,18 +10,17 @@ const UserHomePage: React.FC = () => {
   const username = useAppSelector(state => state.username.value);
 
   return (
-    <div>
+    <div style={{background:"radial-gradient(#ffd8c5, #ffffff)"}}>
       <UserNavigationbar />
-      <h1>Hello {username}!</h1>
-      <h3>My Events</h3>
+      <h1 style={{ color: '#af2918' }}>Hello {username}!</h1>
       <div className="d-flex justify-content-evenly">
-        <div className="w-50">
-          <div className="shadow rounded p-2">
-            <CalendarComponent />
-          </div>
+        <div className="w-50 d-flex flex-column align-items-center">
+          <CalendarComponent />
           <BlogComponent />
         </div>
-        <NotificationComponent />
+        <div className="w-50 d-flex justify-content-center align-items-start">
+          <NotificationComponent />
+        </div>
       </div>
     </div>
   );

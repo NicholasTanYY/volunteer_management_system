@@ -73,7 +73,10 @@ const CalendarComponent: React.FC = () => {
     !isDone
         ? <div></div>
         :
-        <Container>
+        <div>
+            <h3>My Events</h3>
+            <div className="bg-light shadow rounded p-4">
+
             <h2 className="text-center my-4">
                 {currentMonth.toLocaleString('en-us', { month: 'long', year: 'numeric' })}
             </h2>
@@ -114,7 +117,8 @@ const CalendarComponent: React.FC = () => {
                     ))}
                 </tbody>
             </Table>
-        </Container>
+            </div>
+        </div>
     );
 };
 

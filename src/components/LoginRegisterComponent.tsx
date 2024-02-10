@@ -90,12 +90,14 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
     }
 
     return (
-        <Container>
-            <div className="d-flex justify-content-evenly vh-100">
-                <div className="d-flex flex-column justify-content-center">
+            <div className="d-flex justify-content-evenly vh-100 border">
+                <div className="d-flex flex-column align-items-center justify-content-center w-50 border-end" style={{background:"radial-gradient(#ffd8c5, #ffffff)"}}>
+        <h3 style={{ color: '#af2918' }}>Big At Heart</h3>
+        <p className="w-75 fw-bolder">VOLUNASIA is that moment when you forget you're volunteering to help change lives, because it's changing yours.</p>
+        <p className="w-75 fw-bolder">Join us and start your giving journey in a fun, easy and fulfilling way. Come find your volunasia with us !</p>
                     <img src={login} alt="Image" style={{ width: 300, height: 200 }} />
                 </div>
-                <div className="d-flex flex-column justify-content-center">
+                <div className="d-flex flex-column justify-content-center w-50 align-items-center">
                     <h1 className="text-center">
                         {
                             isLogin ?
@@ -104,7 +106,7 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                         }
                     </h1>
                     <h3 className="text-center">
-                        {isLogin ? 'Welcome Back!' : 'Nice to meet you!'}
+                        {isLogin ? 'Welcome Back!' : 'Nice to meet you!'}👋
                     </h3>
                     <div>
                         <form onSubmit={handleSubmit} className="d-flex flex-column">
@@ -181,7 +183,6 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                     </div>
                 </div>
             </div>
-        </Container>
     );
 
 }
