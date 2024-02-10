@@ -108,7 +108,7 @@ const LoginRegisterComponent: React.FC<LoginRegisterProps> = ({ isAdmin, isLogin
                     <h3 className="text-center">
                         {isLogin ? 'Welcome Back!' : 'Nice to meet you!'}👋
                     </h3>
-                    <div>
+                    <div className="w-50">
                         <form onSubmit={handleSubmit} className="d-flex flex-column">
                             {isLogin ? null : (
                                 <>

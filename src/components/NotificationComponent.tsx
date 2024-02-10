@@ -25,10 +25,10 @@ const NotificationComponent: React.FC = () => {
         !isDone
             ? <div></div>
             :
-        <div className="w-75 p-2 rounded">
+        <div className="w-75 p-2">
             <h3>Notifications</h3>
             {notifications.length == 0 && <h5>No upcoming events!</h5>}
-            <div className="bg-light overflow-auto vh-100">
+            <div className="bg-light overflow-auto vh-100 rounded-3">
                 {notifications.map(event => (
                     <NotificationRendererComponent event={event} />
                 ))}

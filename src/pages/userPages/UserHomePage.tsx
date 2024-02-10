@@ -4,7 +4,6 @@ import CalendarComponent from '../../components/CalendarComponent';
 import BlogComponent from '../../components/BlogComponent';
 import NotificationComponent from '../../components/NotificationComponent';
 import { useAppSelector } from '../../redux/hooks';
-import axios from 'axios';
 
 const UserHomePage: React.FC = () => {
   const username = useAppSelector(state => state.username.value);
@@ -12,7 +11,7 @@ const UserHomePage: React.FC = () => {
   return (
     <div style={{background:"radial-gradient(#ffd8c5, #ffffff)"}}>
       <UserNavigationbar />
-      <h1 style={{ color: '#af2918' }}>Hello {username}!</h1>
+      <h2 style={{ color: '#af2918' }}>Hello {username}!</h2>
       <div className="d-flex justify-content-evenly">
         <div className="w-50 d-flex flex-column align-items-center">
           <CalendarComponent />

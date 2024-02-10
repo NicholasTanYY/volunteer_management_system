@@ -82,14 +82,14 @@ const UserProfilePage: React.FC = () => {
     !isDone
       ? <div></div>
       :
-      <div>
+      <div style={{background:"radial-gradient(#ffd8c5, #ffffff)"}}>
       <UserNavigationbar />
-      <h2>My Profile</h2>
+      <h2 style={{ color: '#af2918' }}>My Profile</h2>
       <form onSubmit={handleProfileSubmit}>
         <div className="d-flex justify-content-evenly">
           <ProfilePicComponent />
-          <div className="d-flex flex-column justify-content-center w-25 shadow rounded p-4">
-            <h5>Personal Particulars</h5>
+          <div className="d-flex flex-column justify-content-center w-25 rounded-3 p-4 bg-light">
+            <h5 style={{ color: '#af2918' }}>Personal Particulars</h5>
             <label>
               Full Name (as of NRIC)
               <input type="text" className="form-control" name="fullName" value={profileInfo.fullName} onChange={handleProfileChange} />
@@ -124,9 +124,9 @@ const UserProfilePage: React.FC = () => {
             </label>
           </div>
           <div className="w-25 d-flex flex-column justify-content-evenly align-items-center">
-            <div className="shadow rounded d-flex justify-content-center w-100 h-25 p-4">
+            <div className="rounded-3 d-flex justify-content-center w-100 h-25 p-4 bg-light">
               <label className="w-100">
-                <h5>Interests</h5>
+                <h5 style={{ color: '#af2918' }}>Interests</h5>
                 <Select
                   value={profileInfo.interests}
                   onChange={handleInterestsChange}
@@ -137,9 +137,9 @@ const UserProfilePage: React.FC = () => {
                 />
               </label>
             </div>
-            <div className="shadow rounded d-flex justify-content-center w-100 h-25 p-4">
+            <div className="rounded-3 d-flex justify-content-center w-100 h-25 p-4 bg-light">
               <label className="w-100">
-                <h5>Skills</h5>
+                <h5 style={{ color: '#af2918' }}>Skills</h5>
                 <Select
                   value={profileInfo.skills}
                   onChange={handleSkillChange}
@@ -150,9 +150,9 @@ const UserProfilePage: React.FC = () => {
                 />
               </label>
             </div>
-            <div className="shadow rounded d-flex justify-content-center w-100 h-25 p-4">
+            <div className="rounded-3 d-flex justify-content-center w-100 h-25 p-4 bg-light">
               <label className="w-100">
-                <h5>Progress</h5>
+                <h5 style={{ color: '#af2918' }}>Progress</h5>
                 <div className="d-flex justify-content-evenly">
                   <div className="d-flex flex-column align-items-center">
                     <CircularProgress size="lg" determinate value={eventCount * 100 / goal}>
@@ -172,7 +172,7 @@ const UserProfilePage: React.FC = () => {
           </div>
         </div>
         <div className="d-flex w-100 justify-content-end mb-4">
-          <Button className="w-25 btn-dark" type="submit">Save</Button>
+          <Button className="w-25 bg-light text-dark rounded-3 border border-dark" type="submit">Save</Button>
         </div>
       </form>
     </div>

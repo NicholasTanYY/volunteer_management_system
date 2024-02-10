@@ -8,10 +8,9 @@ import AdminNotificationComponent from '../../components/AdminNotificationCompon
 const AdminHomePage: React.FC = () => {
   const username = useAppSelector(state => state.username.value);
   return (
-    <div>
+    <div style={{background:"radial-gradient(#ffd8c5, #ffffff)"}}>
       <AdminNavigationbar />
-      <h1>Hello {username}!</h1>
-      <h3>My Events</h3>
+      <h2 style={{ color: '#af2918' }}>Hello {username}!</h2>
       <div className="d-flex justify-content-evenly">
           <AdminCalendarComponent />
           <AdminNotificationComponent />

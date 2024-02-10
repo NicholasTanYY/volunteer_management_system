@@ -71,47 +71,50 @@ const AdminCalendarComponent: React.FC = () => {
     !isDone
         ? <div></div>
         :
-        <div className="shadow rounded p-2 h-50">
-            <h2 className="text-center my-4">
-                {currentMonth.toLocaleString('en-us', { month: 'long', year: 'numeric' })}
-            </h2>
-            <div className="d-flex justify-content-between mb-3">
-                <NavButton startIcon={<ArrowBackIcon />} onClick={handlePrevMonth}>
-                    Previous Month
-                </NavButton>
-                <NavButton endIcon={<ArrowForwardIcon />} onClick={handleNextMonth}>
-                    Next Month
-                </NavButton>
-            </div>
-            <Table className="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th className="text-center">Mon</th>
-                        <th className="text-center">Tue</th>
-                        <th className="text-center">Wed</th>
-                        <th className="text-center">Thu</th>
-                        <th className="text-center">Fri</th>
-                        <th className="text-center">Sat</th>
-                        <th className="text-center">Sun</th>
-                    </tr>
-                </thead>
-                <tbody className="table-group-divider">
-                    {chunkArray(currentMonth).map((week, weekIndex) => (
-                        <tr key={weekIndex}>
-                            {week.map((day, index) => (
-                                <td
-                                    key={index}
-                                    className={`text-center`}
-                                    onClick={() => handleDateClick(day, currentMonth)}
-                                >
-                                    {day !== null ? day : ''}
-                                    {day !== null && renderEvents(`${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`)}
-                                </td>
-                            ))}
+        <div>
+            <h3>My Events</h3>
+            <div className="bg-light rounded-3 p-2">
+                <h3 className="text-center my-4">
+                    {currentMonth.toLocaleString('en-us', { month: 'long', year: 'numeric' })}
+                </h3>
+                <div className="d-flex justify-content-between mb-3">
+                    <NavButton startIcon={<ArrowBackIcon />} onClick={handlePrevMonth}>
+                        Previous Month
+                    </NavButton>
+                    <NavButton endIcon={<ArrowForwardIcon />} onClick={handleNextMonth}>
+                        Next Month
+                    </NavButton>
+                </div>
+                <Table className="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th className="text-center">Mon</th>
+                            <th className="text-center">Tue</th>
+                            <th className="text-center">Wed</th>
+                            <th className="text-center">Thu</th>
+                            <th className="text-center">Fri</th>
+                            <th className="text-center">Sat</th>
+                            <th className="text-center">Sun</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody className="table-group-divider">
+                        {chunkArray(currentMonth).map((week, weekIndex) => (
+                            <tr key={weekIndex}>
+                                {week.map((day, index) => (
+                                    <td
+                                        key={index}
+                                        className={`text-center`}
+                                        onClick={() => handleDateClick(day, currentMonth)}
+                                    >
+                                        {day !== null ? day : ''}
+                                        {day !== null && renderEvents(`${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`)}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </div>
         </div>
     );
 };

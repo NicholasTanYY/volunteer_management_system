@@ -25,9 +25,9 @@ const AdminNotificationComponent: React.FC = () => {
             ? <div></div>
             :
         <div className="vh-100 w-25">
-            <h2>Notifications</h2>
+            <h3>Notifications</h3>
             {notifications.length == 0 && <h5>No upcoming events!</h5>}
-            <div className="h-50 overflow-auto shadow rounded">
+            <div className="bg-light h-50 overflow-auto rounded-3">
                 {notifications.map(event => (
                     <NotificationRendererComponent event={event} />
                 ))}

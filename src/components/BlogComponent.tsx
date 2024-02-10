@@ -43,14 +43,14 @@ const BlogComponent: React.FC = () => {
       ? <div></div>
       :
     <div className="w-75">
-      <h2>Blogs</h2>
+      <h3>Latest Blogs</h3>
       {blogs.length > 0 && (
         <div>
-          <div className="d-flex justify-content-between">
-                <NavButton startIcon={<ArrowBackIcon />} onClick={handlePrevClick}> </NavButton>
-                <NavButton endIcon={<ArrowForwardIcon />} onClick={handleNextClick}> </NavButton>
+          <div className="d-flex justify-content-center">
+            <NavButton startIcon={<ArrowBackIcon />} onClick={handlePrevClick}> </NavButton>
+            <BlogRendererComponent blog={blogs[currentBlogIndex]} onClick={handleBlogClick} />
+            <NavButton endIcon={<ArrowForwardIcon />} onClick={handleNextClick}> </NavButton>
             </div>
-          <BlogRendererComponent blog={blogs[currentBlogIndex]} onClick={handleBlogClick} />
         </div>
       )}
     </div>

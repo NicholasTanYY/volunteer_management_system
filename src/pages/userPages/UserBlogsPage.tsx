@@ -82,16 +82,16 @@ const UserBlogsPage: React.FC = () => {
         !isDone
             ? <div></div>
             :
-        <div>
+        <div style={{background:"radial-gradient(#ffd8c5, #ffffff)"}}>
             <UserNavigationbar />
-            <h1>Blogs</h1>
-            <div className=" vh-100 d-flex justify-content-around">
-                <div className="h-75 w-50 d-flex flex-column border overflow-auto">
+            <h2 style={{ color: '#af2918' }}>Blogs</h2>
+            <div className="vh-100 d-flex justify-content-around">
+                <div className="h-75 w-50 d-flex flex-column overflow-auto align-items-center">
                     {blogs.map((blog, idx) =>
                         <BlogRendererComponent key={idx} blog={blog} onClick={() => {}} />
                     )}
                 </div>
-                <form onSubmit={handleBlogSubmit} className="h-75 d-flex flex-column w-25 shadow rounded p-4">
+                <form onSubmit={handleBlogSubmit} className="h-75 d-flex flex-column w-50 border bg-light rounded-3 p-4">
                     <label>
                         <h5>Name:</h5>
                         <input type="text" className="form-control" name="name" value={blogInfo.name} onChange={handleBlogChange} />

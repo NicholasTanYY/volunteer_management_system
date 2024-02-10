@@ -75,7 +75,7 @@ const CalendarComponent: React.FC = () => {
         :
         <div>
             <h3>My Events</h3>
-            <div className="bg-light shadow rounded p-4">
+            <div className="bg-light rounded-3 p-4">
 
             <h2 className="text-center my-4">
                 {currentMonth.toLocaleString('en-us', { month: 'long', year: 'numeric' })}

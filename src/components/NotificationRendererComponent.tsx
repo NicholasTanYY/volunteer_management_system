@@ -7,7 +7,7 @@ interface NotificationRendererProps {
 
 const NotificationRendererComponent: React.FC<NotificationRendererProps> = ({ event }) => {
     return (
-        <div className="border p-4 m-4 shadow rounded">
+        <div className="border p-4 m-4 rounded-3">
             <h5 className="mb-3">Reminder for {event.name}</h5>
             <p className="mb-2">@{event.location}</p>
             <p className="mb-2">Date: {event.date}</p>

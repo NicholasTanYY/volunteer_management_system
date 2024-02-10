@@ -44,7 +44,7 @@ const AdminEventsPage: React.FC = () => {
     !isDone
       ? <div></div>
       :
-      <div>
+      <div style={{background:"radial-gradient(#ffd8c5, #ffffff)"}}>
         <AdminNavigationbar />
         <div style={{ display: 'flex', justifyContent: 'space-between', margin: '10px' }}>
           <h3>All Events</h3>
