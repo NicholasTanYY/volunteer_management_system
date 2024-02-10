@@ -3,9 +3,10 @@
 1. [Problem Statement](#problem-statement)
 2. [Project Objectives](#project-objectives)
 3. [Approach](#approach)
+4. [Brief Overview](#brief-overview)
 4. [Project Structure](#project-structure)
 4. [Details of our solution](#project-details)
-5. [Run our project!](#project-run)
+5. [Run our project](#project-run)
 ## [Problem Statement](#problem-statement)
 Develop a cost-effective system for volunteers to enroll, manage activities, and request certificates, while enabling nonprofit administrators to efficiently handle forms, attendance, and generate detailed reports.
 
@@ -17,10 +18,7 @@ strive to simplify and enhance the user experience by ensuring
 that every feature and functionality is easily accessible within
 three clicks.
 
-## [Approach](#approach)
-#### Logging in
-
-## Brief Overview
+## [Brief Overview](#brief-overview)
 **Event Listing and Registration**: Volunteers can easily browse through a chronological list of events, obtain detailed information with a single click, and register seamlessly.
 
 **Personalized Dashboard**: A user-friendly interface on the 'Home' tab presents volunteers with upcoming events and a snapshot of their participation history.
@@ -37,7 +35,7 @@ three clicks.
 
 Each feature is designed to enhance the experience for both volunteers and organizers, streamlining processes, and fostering a sense of community and recognition within the platform.
 
-## [Run our project!](#project-run)
+## [Run our project](#project-run)
 ### Run from Github Installation
 1. Pull the repository
 2. Run ```npm i``` to install dependencies in ```package.json``` <br> 
